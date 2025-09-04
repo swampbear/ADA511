@@ -1,0 +1,58 @@
+# [Further reading]{.lightblue} {.unnumbered}
+{{< include macros.qmd >}}
+
+
+### Foundations of the probability calculus
+
+The four fundamental rules of the Probability Calculus have been at least since Laplace in the 1700s, essentially in their present form. Laplace used them to infer properties of planets and their orbit (with results still valid today). Proof of their logical foundation and necessity started to appear in the 1940s, a formal milestone being the proof by R. T. Cox in 1946. They have been tightened and reformulated in different ways since. Here are some old and recent works on the foundations (as opposed to works that simply mention the rules and apply them). Cox's and Jaynes's are probably the first ones to be checked:
+
+- J. M. Keynes (1921): [*A Treatise on Probability*](https://archive.org/details/cu31924014584100).
+
+- W. E. Johnson (1924): [*Logic. Part III: The Logical Foundations of Science*](https://archive.org/details/logic03john).
+
+- W. E. Johnson (1932): *Probability: [The relations of proposal to supposal](https://doi.org/10.1093/mind/XLI.161.1), [Axioms](10.1093/mind/XLI.163.281), [The deductive and inductive problems](https://doi.org/10.1093/mind/XLI.164.409).
+
+- H. Jeffreys (1939): [*Theory of Probability*](https://archive.org/details/in.ernet.dli.2015.523592).
+
+- **R. T. Cox (1946): [*Probability, Frequency, and Reasonable Expectation*](https://doi.org/10.1119/1.1990764)**.
+
+- G. Pólya (1949): [*Preliminary remarks on a logic of plausible inference*](https://doi.org/10.1111/j.1746-8361.1949.tb00852.x).
+
+- G. Pólya (1954): [*Mathematics and Plausible Reasoning. Vol. II: Patterns of Plausible Inference*](https://archive.org/details/Patterns_Of_Plausible_Inference_2_).
+
+- M. Tribus (1969): [*Rational Descriptions, Decisions and Designs*](https://doi.org/10.1016/C2013-0-01558-7).
+
+- **E. T. Jaynes (1994): [*Probability Theory: The Logic of Science*](https://archive.org/details/XQUHIUXHIQUHIQXUIHX2)**.
+
+- J. B. Paris (1994): [*The Uncertain Reasoner's Companion: A Mathematical Perspective*](https://doi.org/10.1017/CBO9780511526596).
+
+- T. Hailperin (1996): [*Sentential Probability Logic: Origins, Development, Current Status, and Technical Applications*](https://archive.org/details/hailperin1996-Sentential_probability_logic).
+
+- P. Snow (1998): [*On the correctness and reasonableness of Cox's theorem for finite domains*](https://doi.org/10.1111/0824-7935.00070).
+
+- P. Snow (2001): [*The reasonableness of possibility from the perspective of Cox*](https://doi.org/10.1111/0824-7935.00138).
+
+- K. S. Van Horn (2003): [*Constructing a logic of plausible inference: a guide to Cox's theorem*](https://doi.org/10.1016/S0888-613X(03)).
+
+- M. J. Dupré, F. J. Tipler (2009): [*New axioms for rigorous Bayesian probability*](https://doi.org/10.1214/09-BA422).
+
+\
+
+### Foundations of Decision Theory
+
+Decision Theory is much younger than the Probability Calculus, and its foundations probably still needs to be tightened here and there. Here are old and recent works on its foundations:
+
+- J. von Neumann, O. Morgenstern (1953): [*Theory of Games and Economic Behavior*](https://archive.org/details/in.ernet.dli.2015.215284).
+
+- D. Luce, H. Raiffa (1957): [*Games and Decisions: introduction and critical survey*](https://archive.org/details/img-1907_202109).
+
+- L. J. Savage (1954/1972): [*The Foundations of Statistics*](https://archive.org/details/foundationsofsta00leon).
+
+- E. Eells (1982/2016): [*Rational Decision and Causality*](https://doi.org/10.1017/CBO9781316534823).
+
+- R. Pettigrew (2011/2019): [*Epistemic Utility Arguments for Probabilism*](https://plato.stanford.edu/archives/win2019/entries/epistemic-utility).
+
+- R. A. Briggs (2014/2019): [*Normative Theories of Rational Choice: Expected Utility*](https://plato.stanford.edu/archives/fall2019/entries/rationality-normative-utility).
+
+
+
