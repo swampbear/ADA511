@@ -58,7 +58,7 @@ $$
 
 ::: {.callout-warning}
 ## {{< fa book >}} Study reading
-[*Dynamical Bias in the Coin Toss*](https://hvl.instructure.com/courses/32045/modules).
+[**Skim through**]{.lightblue} Diaconis & al. 2007: [*Dynamical Bias in the Coin Toss*](references.html).
 <!-- We conclude that coin tossing is "physics" not "random." -->
 :::
 
@@ -71,15 +71,15 @@ These points listed above are not just a matter of principle. They have importan
 
 In these notes we shall consistently use the term "probability" in the sense explained above. But beware that this term is used in many different and incompatible senses, depending on whom you're speaking with or which literature you're reading.
 
-Some people use this term in the sense of "frequency": the number of times something happened in a series of repetitions. But a frequency is an objective, measurable quantity; it doesn't depend on the knowledge of an agent. To us is not useful, because it doesn't quantify the belief or certainty of an agent. Suppose a coin is tossed 100 times, and it comes up heads 80 times. The frequency of heads is 80/100. Now suppose that an agent *that does not know anything about the 100 tosses* is asked to predict whether the next toss will be heads or tails. What should the agent's degree of belief or of certainty be? Obviously it should be 50%/50%. If we were to program the agent so that it has a degree of belief of 80% for heads *in situations where nothing is know about previous tosses* (because that's the situation our agent was in), then such an agent would on average lose big time in dealing with new coins.
+Some people use this term in the sense of "frequency": the number of times something happened in a series of repetitions. But a frequency is an objective, measurable quantity; it doesn't depend on the knowledge of an agent. So it is not useful in building an AI that can reason about uncertainty, because it doesn't quantify the belief or certainty of an agent. Suppose a coin is tossed 100 times, and it comes up heads 80 times. The frequency of heads is 80/100. Now suppose that an agent *who has no knowledge about the 100 tosses and their outcomes* is asked to predict whether a toss of the same coin will be heads or tails. What should the agent's degree of belief or of certainty be? Obviously it should be 50%/50%. If we were to program the agent so that it has a degree of belief of 80% for heads *in situations where nothing is know about previous tosses* (because that's the situation our agent was in), then such an agent would on average make poor inferences and decisions in dealing with new coins.
 
-But frequency is *data*, and if a frequency is known, then obviously an agent should take it into account in quantifying its credibility. If an agent *knows* that the coin came up heads 80 times in 100, then it is reasonable that the agent's degree of belief for the next toss should be around 80% for heads. And we shall see that this is indeed what happens.
+But frequency is *data*, and if a frequency *is* known, then obviously an agent should take it into account in quantifying a credibility. If an agent *knows* that the coin came up heads 80 times in 100, then it is reasonable that the agent's degree of belief for the next toss should be around 80% for heads. And we shall see that this is indeed what happens.
 
-So the distinction between "frequency" and "probability" is crucial. Frequencies do not enable us to quantify an agent's beliefs in situations where data are missing.
+So the distinction between "frequency" and "probability" is crucial. Frequencies do not enable us to quantify an agent's beliefs in situations where data are missing. But an agent's beliefs will automatically come close to frequencies -- when doing so is reasonable.
 \
 \
 
-Some people use "probability" in the sense of the number of *a-priori* successes over the number of possibilities. For instance, if you roll a die, and the die comes up {{< fa dice-three >}}, then this result was 1 among six possible results. This is fine, but this definition does not allow us to capture the difference between an agent who has seen the outcome of the roll was {{< fa dice-three >}}, and an agent who has *not* seen the outcome of the roll. We expect the two agents to behave differently. If we programmed the agent to have a degree of belief of 1/6 *even after seeing the outcome of a die roll*, we would have programmed an agent incapable of using new data (seeing the outcome). Would you be happy if a clinician made some medical tests, and then ignored the results of the tests, behaving as if they were still unknown?
+Some people use "probability" in the sense of the number of *a-priori* successes over the number of possibilities. For instance, if you roll a die, and the die comes up {{< fa dice-three >}}, then this result was 1 among six possible results. This is fine, but this definition does not allow us to capture the difference between an agent who has seen that the outcome of the roll was {{< fa dice-three >}}, and an agent who has *not* seen that outcome. We expect the two agents to behave differently, because they have different knowledge. If we programmed the agent to have a degree of belief of 1/6 *even after seeing the outcome of a die roll*, we would have programmed an agent incapable of using new data. Would you be happy if a clinician made some medical tests, and then *ignored* the results of the tests, behaving as if they were still unknown?
 \
 \
 
@@ -141,13 +141,12 @@ Finally, here are *the fundamental rules of all inference*. They are encoded by 
 
 ::::: {.column-page-right}
 :::: {.callout-note style="text-align:center;font-size:125%"}
-## [**{{< fa landmark >}} THE FUNDAMENTAL LAWS OF INFERENCE {{< fa landmark >}}**]{style="font-size:150%"}
+## [**{{< fa landmark >}}\ \ THE FUNDAMENTAL LAWS OF INFERENCE\ \ {{< fa landmark >}}**]{style="font-size:150%"}
 
 :::{style="font-size:165%"}
 $\boldsymbol{\lnot}$ "Not" rule
 : $$\P(\lnot \yX \| \yZ) 
-+ \P(\yX \| \yZ)
-= 1$$
+= 1 - \P(\yX \| \yZ)$$
 \
 
 $\boldsymbol{\land}$ "And" rule
@@ -173,37 +172,45 @@ Truth rule
 = 1
 $$
 :::
-::::
+\
+\
 
-:::: {.callout-note}
-## **How to use the rules**:
+::: {style="text-align:left;font-size:100%"}
+**How to use the rules**:\
 Each equality can be rewritten in different ways according to the usual rules of algebra. Then the resulting left side can be replaced by the right side, and vice versa. The numerical values of starting inferences can be replaced in the corresponding expressions.
+:::
 ::::
 :::::
+
 
 It is amazing that **ALL** inference is nothing else but a repeated application of these four rules -- maybe billions of times or more. All machine-learning algorithms are just applications or approximations of these rules. Methods that you may have heard about in statistics are just specific applications of these rules. Truth inferences are also special applications of these rules. Most of this course is just a study of how to apply these rules to particular kinds of problems.
 
 ::: {.callout-warning}
 ## {{< fa book >}} Study reading
-- Skim through [*Probability, Frequency and Reasonable Expectation*](https://hvl.instructure.com/courses/32045/modules). Try to get the ideas behind the reasoning, even if you can't follow the mathematical details.
 
-- Ch. 2 of [*Bayesian Logical Data Analysis for the Physical Sciences*](https://hvl.instructure.com/courses/32045/modules)
+[**Read**]{.lightblue}:
 
-- Ch. 1 of [*Probability*](https://hvl.instructure.com/courses/32045/modules)
+- Ch. 2 of Gregory: [*Bayesian Logical Data Analysis for the Physical Sciences*](references.html)
 
-- §§1.0--1.2 of [*Data Analysis*](https://hvl.instructure.com/courses/32045/modules)
+- Ch. 1 of O'Hagan: [*Probability*](references.html)
 
-- Skim through Chs 1--2 of [*Probability Theory*](https://hvl.instructure.com/courses/32045/modules)
+- §§1.0--1.2 of Sivia: [*Data Analysis*](references.html)
+
+[**Skim through**]{.lightblue}:
+
+- Cox 1946: [*Probability, Frequency and Reasonable Expectation*](references.html). Try to get the ideas behind the reasoning, even if you can't follow the mathematical details.
+
+- Chs 1--2 of Jaynes: [*Probability Theory*](references.html)
 :::
 
 \
 The fundamental inference rules are used in the same way as their truth-inference counterpart of [§@truth-inference-rules]: Each equality can be rewritten in different ways according to the usual rules of algebra. The left and right side of the equality thus obtained can replace each other in a proof.
 
-## Solution of the uncertain-inference example
+## Solution of the uncertain-inference example {#sec-solution-first-probinference}
 
 Armed with the fundamental rules of inference, let's solve our earlier inference problem. As usual, we first analyse it and represent it in terms of atomic sentences; we find what are its proposal and conditional; and we find which initial inferences are given in the problem.
 
-### Atomic sentences
+### (1) Atomic sentences
 
 $$
 \begin{aligned}
@@ -219,9 +226,9 @@ $$
 
 The background information in this example is different from the previous, truth-inference one, so we use the different symbol $\yJ$ for it.
 
-### Proposal, conditional, and target inference
+### (2) Proposal, conditional, and target inference
 
-The proposal is $\lnot\yh$, just like in the truth-inference example.
+The proposal is $\lnot\yh$, just like in the [truth-inference example](#sec-trivial-inference-analysis).
 
 The conditional is different now. We know that the component failed early, but we don't know whether it passed the shock test. Hence the conditional is
 $\yf \land \yJ$.
@@ -232,7 +239,7 @@ $$
 \red\P(\lnot\yh \| \yf \land \yJ)
 $$
 
-### Starting inferences
+### (3) Starting inferences
 
 We are told that if an electric component fails early, then at production it didn't pass the heating test or the shock test (or neither). This is given as a sure fact. Let's write it as
 
@@ -254,7 +261,7 @@ $$ {#eq-start-inf-c}
 
 Note the interesting situation above: we are not given the numerical values of these two probabilities; we are only told that they are equal. This is an example of application of the *principle of indifference*, which we'll discuss more in detail later.
 
-### Final inference
+### Finding the target inference
 
 Also in this case there is no unique way of applying the rules to reach our target inference, but *all paths will lead to the same result*. Let's try to proceed backwards:
 
@@ -316,13 +323,45 @@ So the probability that the component didn't pass the heating test is $55\%$.
 :::
 
 
-## How the inference rules are used
+## Use and implementation of the inference rules {#sec-algorithm-rules}
 
-In the solution above you noticed that the equations of the fundamental rules are not only used to obtain some of the probabilities appearing in them from the remaining probabilities.
+In the [step-wise solution above](#sec-solution-first-probinference) you noticed that the equations of the fundamental rules were not only used to calculate the probability on their left side, given those on their right side. For example, in the very first step, when we went from the probability
 
-The rules represent, first of all, [*constraints of logical consistency*]{.blue}^[The technical term is [**coherence**]{.blue}.] among probabilities. For instance, if we have probabilities\ \ $\P(\yY\|\yX\land \yZ)=0.1$,\ \ $\P(\yX\|\yZ)=0.7$,\ \ and $\P(\yX\land \yY\|\yZ)=0.2$,\ \ then there's an inconsistency somewhere, because these values violate the and-rule:\ \ $0.2 \ne 0.1 \cdot 0.7$.\ \ In this case we must find the inconsistency and solve it. However, since probabilities are quantified by real numbers, it's possible and acceptable to have slight discrepancies within numerical round-off errors.
+$$\P(\lnot\yh \| \yf \land \yJ)$$
 
-The rules also imply more general constraints. For example we must *always* have
+to the sum
+
+$$\P(\lnot\ys \lor \lnot\yh \| \yf \land \yJ)
++ \P(\lnot\ys \land \lnot\yh \| \yf \land \yJ)
+- \P(\lnot\ys \| \yf \land \yJ) \,,
+$$
+
+we used the or-rule rewritten, by simple algebra, as follows:
+
+$$
+\P(\yX \| \yZ)
+= \P(\yX {\red\lor} \yY \| \yZ)
+- \P(\yY \| \yZ)
++ \P(\yX \land \yY \| \yZ) \,.
+$$
+
+The four rules in fact represent, first of all, [*constraints of logical consistency*]{.blue} (the precise technical term is [**coherence**]{.blue}) among probabilities. For instance, if we have probabilities
+
+$$\begin{aligned}
+\P(\yY\|\yX\land \yZ) &= 0.1
+\\
+\P(\yX\|\yZ) &= 0.7
+\\
+\P(\yX\land \yY\|\yZ) &= 0.2 \,,
+\end{aligned}$$
+
+then there must be an inconsistency the agent's degrees of belief, because these values violate the and-rule:
+
+$$0.2 \ne 0.1 \cdot 0.7 \,.$$
+
+When this happens, the inconsistency must be found and solved. (However, since probabilities are quantified by real numbers, it's possible and acceptable to have slight discrepancies within numerical round-off errors.)
+
+The fundamental rules also imply more general constraints. For example we must *always* have
 
 $$
 \begin{gathered}
@@ -334,10 +373,97 @@ $$
 
 ::: {.callout-caution icon=false}
 ## {{< fa user-edit >}} Exercise
-Try to prove the two constraints above.
+- Try to prove the two constraints above from the four fundamental rules.
+
+- Translate the two constraints above verbally. Do they make intuitive sense? (For example, the first constraint says, very roughly speaking, that our belief in *two* things can't be stronger than our belief in either one of the two things alone.)
 :::
 
+\
 
+In following the step-wise solution you may have been asking yourself after some steps: "OK, why this peculiar step now, and not some other step?". This is a very intelligent question. You essentially noticed the *lack of an algorithm*. Compare this situation with the [solution of a basic decision problem](#sec-make-decision): there we had a clear sequence of steps to do: writing down some tables, do some element-wise multiplications and then some sums, and finally find the largest of a list of numbers.
+
+Is there an algorithmic way of drawing inferences, that is, of calculating some target probabilities given some initial ones? If our inference problem involves a *finite* number of sentences, then the answer is *yes*, but with some caveats.
+
+Given a set of initial probabilities, and a target probability whose value we want to find, there is an algorithm that yields **the minimum and the maximum possible values** of the target probability. Specifically it can yield the following results (note that some are particular instances of others):
+
+::::{.column-margin}
+::: {.callout-tip}
+## {{< fa rocket >}} For the extra curious
+The complete proof that inference problems can be solved this way seems to have been given first by Hailperin:
+
+- (1965): [*Best Possible Inequalities for the Probability of a Logical Function of Events*](references.html),
+
+- (1996): [*Sentential Probability Logic: Origins, Development, Current Status, and Technical Applications*](references.html),
+
+although particular cases were explored already by Boole.
+
+:::
+::::
+
+[{{< fa right-from-bracket >}}\ \ \ *No values*]{.blue}
+: This means that the initial probabilities have inconsistent values; that is, they violate some of the four rules, as in the "$0.2 \ne 0.1 \cdot 0.7$" example above.
+\
+\
+
+[{{< fa right-from-bracket >}}\ \ \ *$0$ and $1$*]{.blue}
+: That is, the target probability is completely unspecified. This means that the initial probabilities are not sufficient to determine the target probability. For example, if we have $\P(\yX \| \yZ) = 0.2$, and $\yY$ is a sentence completely unrelated to $\yX$ (no atomic sentences in common), then $\P(\yY \| \yZ)$ could have any value.
+\
+\
+
+[{{< fa right-from-bracket >}}\ \ \ *Values $v$, $V$ with $v < V$ and at least one different from 0 or 1*]{.blue}
+: That is, the target probability cannot have any value whatsoever, but a its value is still unspecified. This means that the initial probabilities constrain the target probability somewhat, but do not determine it. The two constraints discussed above are an example of this: if we have $\P(\yX \| \yZ) = 0.2$ and $\P(\yY \| \yZ) = 0.3$, the we can say that $0 \le \P(\yX \land \yY\| \yZ) \le 0.2$, but its precise value is not determined.
+\
+\
+
+[{{< fa right-from-bracket >}}\ \ \ *One value $p$*]{.blue}
+: The target probability is completely determined by the initial ones. This occurred in our example inference about the electronic component.
+\
+\
+
+This algorithm is not mathematically difficult, but it is somewhat involved. It boils down to:\ (1) writing the sentences in the initial and target probabilities in [*disjunctive normal form*](https://mathworld.wolfram.com/DisjunctiveNormalForm.html);\ (2) rewriting the initial and target probabilities as sum of probabilities of basic conjunctions;\ (3) solving two *linear-fractional optimization* problems, equivalent to [*linear optimization*](https://mathworld.wolfram.com/LinearProgramming.html) oens (for which there are algorithms available).
+
+You can find an implementation of the algorithm above in the [R function `findP()`](https://github.com/pglpm/ADA511/blob/master/code/findP.R), which requires the [**lpSolve**](https://cran.r-project.org/package=lpSolve) R package. This function takes as first argument the probability we want to find, and as remaining arguments the values of the given probabilities, or equalities among probabilities. We must use the following notation:
+
+- $\lnot$\ \ becomes\ \ `!`
+- $\land$\ \ becomes\ \ `&`\ or equivalently\ `&&`
+- $\lor$\ \ becomes\ \ `|`\ (sadly) or equivalently\ `||`
+- $=$\ \ becomes\ \ `==`
+- conditional bar $\|$\ \ becomes\ \ `~`
+
+The output are the minimum and maximum possible values of the target probability, or `NA` if the starting probabilities are inconsistent.
+
+We can apply this function in the example above about the electronic component:
+
+```{r}
+library('lpSolve')
+source('code/findP.R') # load the function
+
+findP(
+    ## target probability:
+    P(!h ~ f & J),
+    ## initial probabilities:
+    P(!h || !s ~ f & J) == 1,
+    P(!h & !s ~ f & J) == 0.1,
+    P(h ~ f & J) == P(s ~ f & J)
+)
+```
+
+Obviously the algorithm becomes more expensive, the larger the number of sentences in the inference problem. In inference problems involving continuous quantities, such as energy, such an algorithm cannot be applied in practice. Also, the way the algorithm above works cannot be represented as a sequence of "logical" steps with consecutive applications of the rules, as shown in the step-wise solution above. Later on in this course we shall focus on specific kinds of inferences for which other, less opaque inference algorithms are available.
+
+:::{.callout-caution}
+## {{< fa user-edit >}} Exercises
+- Play with the function `findP()`: test it in other inference problems, find problems where there is no solution and others where the `min` and `max` values are different.
+
+- Consider the following inference:
+```{r}
+findP(
+    P(hypothesis ~ evidence1 & evidence2 & I), # target
+    P(hypothesis ~ evidence1 & I) == 0.1,
+    P(hypothesis ~ evidence2 & I) == 0.9
+)
+```
+What does this result tells us about "combining evidence" to prove a hypothesis?
+:::
 
 ## Consequences of not following the rules
 
@@ -352,8 +478,10 @@ Prove that the two probabilities in the example above break the `and`-rule. [(Hi
 
 ::: {.callout-warning}
 ## {{< fa book >}} Study reading
-- §12.2.3 in [*Artificial Intelligence*](https://hvl.instructure.com/courses/32045/modules)
-- As you continue your studies, go through chapters 4--8 of [*Rational Choice in an Uncertain World*](https://hvl.instructure.com/courses/32045/modules), just to get the main messages and an overview of curious psychological phenomena.
+
+- [**Read**]{.lightblue} §12.2.3 in [*Artificial Intelligence*](references.html)
+
+- As you continue your studies, [**skim through**]{.lightblue} chapters 4--8 of Hastie & Dawes: [*Rational Choice in an Uncertain World*](references.html), just to get the main messages and an overview of curious psychological phenomena.
 :::
 
 
@@ -415,7 +543,7 @@ Such practice may be convenient, but be wary of it, especially in particular sit
 ::::{.column-margin}
 ::: {.callout-tip}
 ## {{< fa rocket >}} For the extra curious
-A once-famous [paper published in the quantum-theory literature](https://hvl.instructure.com/courses/32045/modules) arrived at completely wrong results simply by omitting background information, mixing up probabilities having different conditionals.
+A once-famous paper in the quantum-theory literature: Brukner & Zeilinger 2000: [Conceptual inadequacy of the Shannon information in quantum measurements](references.html) arrived at completely wrong results simply by omitting background information, mixing up probabilities having different conditionals.
 :::
 ::::
 
