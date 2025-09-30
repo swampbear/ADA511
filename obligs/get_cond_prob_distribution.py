@@ -44,7 +44,8 @@ def get_cond_prob_distribution(joint_probs, search_string):
     if direction == "column":
         # Get column conditional probabilities
         if identifier.startswith("#"):
-            col_idx = int(identifier[1:])
+            # needs to reduce by one to get correct column
+            col_idx = int(identifier[1:])-1
             col_data = df.iloc[:, col_idx]
             col_name = df.columns[col_idx]
         else:
@@ -62,6 +63,7 @@ def get_cond_prob_distribution(joint_probs, search_string):
             row_idx = int(identifier[1:])
             row_data = df.iloc[row_idx, :]
             row_name = df.index[row_idx]
+        
         else:
             row_data = df.loc[identifier]
             row_name = identifier
@@ -77,47 +79,5 @@ def get_cond_prob_distribution(joint_probs, search_string):
     return result
         
 
-# Example usage and testing
-if __name__ == "__main__":
-    # Original data structure
-    joint_probs = [
-        ['ambulance', 'helicopter', 'other'],
-        ['urgent', 0.11, 0.04, 0.03],
-        ['non-urgent', 0.17, 0.01, 0.64]
-    ]
-    
-    # Convert to DataFrame for better visualization
-    df = create_joint_prob_dataframe(joint_probs)
-    print("Joint Probability Table:")
-    print(df)
-    print("\n" + "="*50 + "\n")
-    
-    # Test examples
-    print("1. Column conditional probability by index:")
-    result1 = get_cond_prob_distribution(joint_probs, "column #2")
-    print(result1)
-    print()
-    
-    print("2. Column conditional probability by name:")
-    result2 = get_cond_prob_distribution(joint_probs, "column helicopter")
-    print(result2)
-    print()
-    
-    print("3. Row conditional probability by name:")
-    result3 = get_cond_prob_distribution(joint_probs, "row urgent")
-    print(result3)
-    print()
-    
-    print("4. Row conditional probability by index:")
-    result4 = get_cond_prob_distribution(joint_probs, "row #0")
-    print(result4)
-    
-    # Optional: Load and display income data if file exists
-    try:
-        income_data = pd.read_csv('../extra_datasets/income_data.csv')
-        print("\n" + "="*50)
-        print("Income Data Preview:")
-        print(income_data.head())
-    except FileNotFoundError:
-        print("\nIncome data file not found - skipping that part.")
+
 
