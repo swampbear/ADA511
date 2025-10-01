@@ -30,7 +30,16 @@ def test_case(input_str, expected):
     match_pandas = pandas_result == expected
     both_match = orig_result == pandas_result
     
-    print(f"✅ Pass: {match_orig and match_pandas and both_match}")
+    if match_orig and match_pandas and both_match:
+        print("✅ Pass")
+    else:
+        print("❌ Fail")
+        if not match_orig:
+            print(f"   Original failed: got {orig_result}, expected {expected}")
+        if not match_pandas:
+            print(f"   Pandas failed: got {pandas_result}, expected {expected}")
+        if not both_match:
+            print(f"   Implementations don't match: Original={orig_result}, Pandas={pandas_result}")
     print("-" * 40)
 
 if __name__ == "__main__":

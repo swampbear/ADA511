@@ -18,12 +18,12 @@ def solve_for_numbers(joint_probs, search_string):
                 total += row[number]
         for row in joint_probs:
                 if isinstance(row[number], float):    
-                    result.append(round(row[number]/total,2))
+                    result.append(round(row[number]/total,5))
     if search_string.startswith("row"):
         total += sum(joint_probs[number][1:])
         for col in joint_probs[number]:
             if isinstance(col, float):
-                result.append(round(col/total,2))
+                result.append(round(col/total,5))
     return result 
 
 def get_value_name_index(joint_probs, search_string):
@@ -46,6 +46,5 @@ def get_cond_prob_distribution(joint_probs, search_string):
     else:
         index = get_value_name_index(joint_probs, search_string)
         new_search_string = " #".join([search_string.split(' ')[0], str(index)])
-        print(new_search_string)
         distribution = solve_for_numbers(joint_probs, new_search_string)
         return distribution
