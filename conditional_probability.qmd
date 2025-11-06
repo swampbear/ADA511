@@ -137,7 +137,8 @@ is **not** a probability distribution. Calculate the three probabilities above a
 :::
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 - Using the values from [table @tbl-urgent-arrival] and the formula for marginal probabilities, calculate:
 
     + The conditional probability that the next patient needs urgent care, given that the patient is being transported by helicopter.
@@ -208,7 +209,8 @@ $$
 :::
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 - Check that the joint probability distribution as defined above indeed sums up to $1$.
 
 - Calculate the marginal probability for $U_1\mo\urge$, that is,\ \ $\P(U_1\mo\urge \|\yI)$.
@@ -318,7 +320,8 @@ The differences among scenarios are reflected in differences in joint probabilit
 
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercises
+
+
 
 a. Using the same joint distribution above, calculate
 
@@ -364,9 +367,9 @@ b. Do an analysis completely analogous to the one above, but with different back
 
 Take the time to review the two sections above, focusing on the application and meaning of the two scenarios and calculations, and noting the similarities and differences:
 
-- [{{< fa equals >}} The calculations were completely analogous. In particular, the conditional probability was obtained as the quotient of a joint probability and a marginal one.]{.green}
+- {{< fa equals >}}\ \ The calculations were completely analogous. In particular, the conditional probability was obtained as the quotient of a joint probability and a marginal one.
 
-- [{{< fa not-equal >}} In the first (urgency & transportation) scenario, information about one aspect of the situation changed the agent's belief about another aspect. The two aspects were different (transportation and urgency). Whereas in the second (three-patient) scenario, information about analogous occurrences of an aspect of the situation changed the agent's belief about a further occurrence.]{.yellow}
+- {{< fa not-equal >}}\ \ In the first (urgency & transportation) scenario, information about one aspect of the situation changed the agent's belief about another aspect. The two aspects were different (transportation and urgency). Whereas in the second (three-patient) scenario, information about analogous occurrences of an aspect of the situation changed the agent's belief about a further occurrence.
 
 \
 A third scenario is also possible, which combines the two above. Consider the case with three patients, where each patient can require $\urge$ care or not, and can be transported by $\ambu$, $\heli$, or $\othe$ means. To describe this situation, introduce three pairs of quantities, which together form the joint quantity
@@ -439,7 +442,7 @@ where the index $\red \upsilon$ runs over all possible values in the domain of $
 
 <!-- As emphasized in [§@sec-inference-origin], probabilities are either obtained from other probabilities, or taken as given probabilities, maybe determined by symmetry requirements. This is also true when we want to calculate conditional probabilities. -->
 
-Up to now we have calculated conditional probabilities, using the derived formula ([@eq-conditional-joint]), starting from the joint probability distribution, which we considered to be given. In some situations, however, an agent may initially possess not a joint probability distribution but  **conditional probabilities** together with **marginal probabilities**.
+Up to now we have calculated conditional probabilities, using the derived formula (@eq-conditional-joint), starting from the joint probability distribution, which we considered to be given. In some situations, however, an agent may initially possess not a joint probability distribution but  **conditional probabilities** together with **marginal probabilities**.
 
 As an example let's consider a variation of our next-patient scenario one more time. The agent has background information $\yi[S]$ that provides the following set of probabilities:
 
@@ -628,9 +631,13 @@ In [§@sec-marginal-scatter] we saw that if we have the scatter plot for a joint
 
 ::: {.callout-warning}
 ## {{< fa book >}} Study reading
+[**Read**]{.lightblue}:
+
 - §5.4 of Fenton & Neil: [*Risk Assessment and Decision Analysis with Bayesian Networks*](references.html)
 
 - §§12.2.1, 12.3, and 12.5 of [*Artificial Intelligence*](references.html)
+
+[**Skim through**]{.lightblue}:
 
 - §§4.1--4.3 in Sox & al.: [*Medical Decision Making*](references.html)
 

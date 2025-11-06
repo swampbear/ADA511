@@ -102,7 +102,8 @@ Again the inspector wants to assess whether the component *did not pass* the hea
 From the data and information given, what would you say is the probability that the component didn't pass the heating test?
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercises
+
+
 - Try to argue why a conclusion cannot be drawn with certainty in this case. One way to argue this is by presenting two different scenarios that fit the given data but have opposite conclusions.
 
 - Try to reason intuitively and assess the probability that the component didn't pass the heating test. Should it be larger or smaller than 50%? Why?
@@ -310,7 +311,8 @@ $$
 So the probability that the component didn't pass the heating test is $55\%$.
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercises
+
+
 - Try to find an intuitive explanation of why the probability is 55%, slightly larger than 50%. If your intuition says this probability is wrong, then:
 
     + Check the proof of the inference for mistakes, or try to find a proof with a different path.
@@ -372,7 +374,7 @@ $$
 $$
 
 ::: {.callout-caution icon=false}
-## {{< fa user-edit >}} Exercise
+
 - Try to prove the two constraints above from the four fundamental rules.
 
 - Translate the two constraints above verbally. Do they make intuitive sense? (For example, the first constraint says, very roughly speaking, that our belief in *two* things can't be stronger than our belief in either one of the two things alone.)
@@ -422,44 +424,54 @@ although particular cases were explored already by Boole.
 
 This algorithm is not mathematically difficult, but it is somewhat involved. It boils down to:\ (1) writing the sentences in the initial and target probabilities in [*disjunctive normal form*](https://mathworld.wolfram.com/DisjunctiveNormalForm.html);\ (2) rewriting the initial and target probabilities as sum of probabilities of basic conjunctions;\ (3) solving two *linear-fractional optimization* problems, equivalent to [*linear optimization*](https://mathworld.wolfram.com/LinearProgramming.html) oens (for which there are algorithms available).
 
-You can find an implementation of the algorithm above in the [R function `findP()`](https://github.com/pglpm/ADA511/blob/master/code/findP.R), which requires the [**lpSolve**](https://cran.r-project.org/package=lpSolve) R package. This function takes as first argument the probability we want to find, and as remaining arguments the values of the given probabilities, or equalities among probabilities. We must use the following notation:
+## An implementation in R
 
-- $\lnot$\ \ becomes\ \ `!`
-- $\land$\ \ becomes\ \ `&`\ or equivalently\ `&&`
-- $\lor$\ \ becomes\ \ `|`\ (sadly) or equivalently\ `||`
+The algorithm described in the previous section is implemented in the R function [`inferP()`](https://github.com/pglpm/ADA511/blob/master/code/inferP.R); it requires the [**lpSolve**](https://cran.r-project.org/package=lpSolve) R package, which we installed in the [R introduction](Rintro1.html).
+
+The `inferP()` function takes as first `target =` argument the probability we want to find, and as remaining arguments the values of the given probabilities, or equalities among probabilities. We must use the following notation:
+
+- $\lnot$\ \ becomes\ \ ` !`\ or equivalently\ ` -`
+- $\land$\ \ becomes\ \ ` & `\ or equivalently\ ` && `
+- $\lor$\ \ becomes\ \ `+`
 - $=$\ \ becomes\ \ `==`
-- conditional bar $\|$\ \ becomes\ \ `~`
+- conditional bar $\|$\ \ becomes\ \ ` | `
 
 The output are the minimum and maximum possible values of the target probability, or `NA` if the starting probabilities are inconsistent.
 
 We can apply this function in the example above about the electronic component:
 
 ```{r}
-library('lpSolve')
-source('code/findP.R') # load the function
+#| echo: false
+knitr::opts_knit$set(root.dir = "code/")
+```
 
-findP(
+```{r}
+library('lpSolve') ## load the library
+
+source('inferP.R') ## load the function
+
+inferP(
     ## target probability:
-    P(!h ~ f & J),
-    ## initial probabilities:
-    P(!h || !s ~ f & J) == 1,
-    P(!h & !s ~ f & J) == 0.1,
-    P(h ~ f & J) == P(s ~ f & J)
-)
+    target = P(!h  |  f & J),
+    ## given probabilities:
+    P(!h + !s  |  f & J) == 1,
+    P(!h & !s  |  f & J) == 0.1,
+    P(h  |  f & J) == P(s  |  f & J)
+) 
 ```
 
 Obviously the algorithm becomes more expensive, the larger the number of sentences in the inference problem. In inference problems involving continuous quantities, such as energy, such an algorithm cannot be applied in practice. Also, the way the algorithm above works cannot be represented as a sequence of "logical" steps with consecutive applications of the rules, as shown in the step-wise solution above. Later on in this course we shall focus on specific kinds of inferences for which other, less opaque inference algorithms are available.
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercises
-- Play with the function `findP()`: test it in other inference problems, find problems where there is no solution and others where the `min` and `max` values are different.
+
+- Play with the function `inferP()`: test it in other inference problems, find problems where there is no solution and others where the `min` and `max` values are different.
 
 - Consider the following inference:
 ```{r}
-findP(
-    P(hypothesis ~ evidence1 & evidence2 & I), # target
-    P(hypothesis ~ evidence1 & I) == 0.1,
-    P(hypothesis ~ evidence2 & I) == 0.9
+inferP(
+    target = P(hypothesis  |  evidence1 & evidence2 & I),
+    P(hypothesis  |  evidence1 & I) == 0.1,
+    P(hypothesis  |  evidence2 & I) == 0.9
 )
 ```
 What does this result tells us about "combining evidence" to prove a hypothesis?
@@ -472,8 +484,9 @@ The fundamental rules of inference guarantee that the agent's uncertain reasonin
 There are many examples of inconsistencies that appear when the rules are broken. Imagine for instance an agent that gives an 80% probability that it rains^[to be precise, let's say "it rains above 1 mm"] in the next hour; and it also gives a 90% probability that it rains *and* that the average wind is above 3⋅m/s in the next hour. This is clearly unreasonable, because the raining scenario alone would be true with wind above 3 m/s *and also* below 3⋅m/s -- therefore it should be *more* probable than the scenario where the wind is above 3 m/s. And indeed the two given probabilities break the `and`-rule, showing that they are unreasonable or illogical.
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
-Prove that the two probabilities in the example above break the `and`-rule. [(Hint: you must use the fact that probabilities are numbers between 0 and 1, and that multiplying a number by something between 0 and 1 can only yield a smaller number.)]{.small}
+
+
+Prove that the two probabilities in the example above break the `and`-rule.\ \ (Hint: you must use the fact that probabilities are numbers between 0 and 1, and that multiplying a number by something between 0 and 1 can only yield a smaller number.)
 :::
 
 ::: {.callout-warning}

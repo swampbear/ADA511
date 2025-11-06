@@ -33,11 +33,8 @@ We'll use the neutral pronouns *it*/*its* when referring to an agent, since an a
 - [{{< fa cube >}} **Data**]{.blue} and other [**additional information**]{.blue}, sometimes called [**evidence**]{.blue}. They differ from the background information in that they can change with every decision instance made by the same agent, while the background information stays the same. In the assembly-line scenario, for example, the test results could be different for every new electric component.
 
 
-- [{{< fa cube >}} **Decisions**]{.blue} available to the agent. They are assumed to be mutually exclusive and exhaustive; this can always be achieved by recombining them if necessary, as we'll discuss later.
+- [{{< fa cube >}} **Decisions**]{.blue}, also called [**courses of action**]{.blue}, available to the agent. They are assumed to be mutually exclusive and exhaustive; this can always be achieved by recombining them if necessary, as we'll discuss later.
 
-:::{.column-margin}
-*Decisions* are called *courses of action* in some literature.
-:::
 
 - [{{< fa cube >}} **Outcomes**]{.blue} of the possible decisions. Every decision can have a different set of outcomes, or some outcomes can appear for several or all decisions (in this case they are reported multiple times in the decision diagram). Note that even if an outcome can happen for two or more different decisions, its probabilities can still be different depending on the decision.
 
@@ -95,7 +92,8 @@ The relation between the elements above can be depicted as follows -- but note t
 :::
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 - Identify the elements above in the assembly-line decision problem of the [introduction @sec-intro].
 - Sketch the decision diagram for the assembly-line decision problem.
 :::
@@ -208,20 +206,19 @@ Note how the outcomes that do not exist for a particular decision have been give
 \
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercises
+
+
 Apply the steps above to the following basic decision problems (you only need to set them up with their probability & utility tables, but feel free to solve them as well, if you like):
 
 - The "heads-bet" vs "tails-bet" example of [§@sec-optimality]. Assume that the "small amount" of money is $10\$$, the "large amount" is $1000\$$, and the two outcomes' probabilities are $50\%$ each.
 
 - Peter must reach a particular destination, and is undecided between three alternatives: *go by car*, or *ride a bus*, or *go on foot*.
     
-    If he goes by car, he could *arrive without problems*, with a probability of $80\%$ and a utility of $10\,¤$, or he could *get stuck in a traffic jam* and arrive late, with a probability of $20\%$ and a utility of $-10\,¤$.
+    If he goes by car, he could *arrive without problems*, with a probability of $80\%$ and a utility of $10$, or he could *get stuck in a traffic jam* and arrive late, with a probability of $20\%$ and a utility of $-10$.
     
-    If he rides a bus, he could *arrive without problems*, with a probability of $95\%$ and a utility of $15\,¤$, or arrive in time but *travelling in a fully-packed bus*, with a probability of $5\%$ and a utility of $-10\,¤$.
+    If he rides a bus, he could *arrive without problems*, with a probability of $95\%$ and a utility of $15$, or arrive in time but *travelling in a fully-packed bus*, with a probability of $5\%$ and a utility of $-10$.
     
-    If he goes on foot, he could *arrive without problems*, with a probability of $20\%$ and a utility of $20\,¤$, or he could *get soaked from rain*, with a probability of $80\%$ and a utility of $-5\,¤$.<!-- 6, 13.75, 0 -->
-    
-	(We are using the symbol\ \ "$¤$"\ \ because Peter's utilities are a combination of money savings, time of arrival, and comfort.)
+    If he goes on foot, he could *arrive without problems*, with a probability of $20\%$ and a utility of $20$, or he could *get soaked from rain*, with a probability of $80\%$ and a utility of $-5$.<!-- 6, 13.75, 0 -->
 :::
 
 \
@@ -278,7 +275,8 @@ and, as we already knew, [discard]{.yellow}ing the electronic component is the d
 
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 Feel free to sketch some code (in your preferred programming language) that chooses the optimal decision according to the principle above. The code should take two inputs: the table or matrix of probabilities, and the table or matrix of utilities; and should give one output: the row-number of the optimal decision.
 :::
 

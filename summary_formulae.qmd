@@ -1,4 +1,4 @@
-# [Final inference formulae]{.green} {#sec-summary-formulae}
+# [Final inference formulae for exchangeable beliefs]{.green} {#sec-summary-formulae}
 {{< include macros.qmd >}}
 {{< include macros_exchangeability.qmd >}}
 
@@ -7,7 +7,7 @@ We finally have all theoretical ingredients and formulae to use the probability 
 - beliefs about units are exchangeable,
 - the population size is practically infinite. 
 
-In the next part, [An Optimal Predictor Machine]{.red}, we shall computationally implement these formulae and use them in a couple of simple and not-so-simple inference problems.
+In the next part, [A prototype Optimal Predictor Machine]{.red}, we shall computationally implement these formulae and use them in a couple of simple and not-so-simple inference problems.
 
 Here we collect the main formulae for exchangeable beliefs and tasks about
 
@@ -25,26 +25,25 @@ All inferences about units of a population rely on the joint probability for any
 :::{.callout-note}
 ## Main formulae for some inference tasks under exchangeable beliefs
 
-de Finetti's representation
-: 
+[**de Finetti's representation**]{.blue}
 
 $$
 \begin{aligned}
 &\P\bigl(
-\blue Z_{N+1} \mo z_{N+1}
+ Z_{N+1} \mo z_{N+1}
 \and
 Z_N \mo z_N
 \and
 \dotsb \and 
 Z_1 \mo z_1 
-\black \pmb{\|[\big]} \yI\bigr)
+ \pmb{\|} \yI\bigr)
 \\[2ex]
 &\qquad{}=
 \sum_{\vf}
-f({\blue Z\mo z_{N+1}}\black) \cdot
-f({\blue Z\mo z_{N}}\black) \cdot
+f({ Z\mo z_{N+1}}) \cdot
+f({ Z\mo z_{N}}) \cdot
 \, \dotsb\, \cdot
-f({\blue Z\mo z_{1}}\black)
+f({ Z\mo z_{1}})
 \cdot
 \P(F\mo\vf \| \yI)
 \end{aligned}
@@ -55,7 +54,7 @@ or, in terms of predictand $\bY$ and predictors $\bX$ variates:
 $$
 \begin{aligned}
 &\P\bigl(
-\blue Y_{N+1} \mo y_{N+1}
+ Y_{N+1} \mo y_{N+1}
 \and
 X_{N+1} \mo x_{N+1}
 \and
@@ -64,13 +63,13 @@ X_{N+1} \mo x_{N+1}
 Y_{1} \mo y_{1}
 \and
 X_{1} \mo x_{1}
-\black \pmb{\|[\big]} \yI\bigr)
+ \pmb{\|} \yI\bigr)
 \\[2ex]
 &\qquad{}=
 \sum_{\vf}
-f({\blue Y\mo y_{N+1} \and X\mo x_{N+1}}) \cdot
+f({ Y\mo y_{N+1} \and X\mo x_{N+1}}) \cdot
 \, \dotsb\, \cdot
-f({\blue Y\mo y_{1} \and X\mo x_{1}})
+f({ Y\mo y_{1} \and X\mo x_{1}})
 \cdot
 \P(F\mo\vf \| \yI)
 \end{aligned}
@@ -98,14 +97,13 @@ $\P(F\mo\vf\|\yI)$ is problem-dependent and must be specified by the agent.
 
 \
 
-{{< fa regular star >}} Inferences about all variates $\bZ$ of a new unit, given observed units
-: 
+[**Inferences about all variates $\bZ$ of a new unit, given observed units**]{.blue}
 
 $$
 \begin{aligned}
     &\P\bigl(
 	{\red Z_{N+1} \mo z_{N+1}}
-	\pmb{\|[\big]} 
+	\pmb{\|} 
     \green Z_N \mo z_N \and 
 	\dotsb \and 
 	Z_1 \mo z_1 
@@ -121,7 +119,7 @@ $$
 	\and
 	\dotsb \and 
 	\green Z_1 \mo z_1 
-    \black\pmb{\|[\big]} {\yI} \bigr)
+    \black\pmb{\|} {\yI} \bigr)
 }{
 	 \sum_{\purple z} \P\bigl(
 	{\red Z_{N+1} \mo {\purple z}} 
@@ -129,7 +127,7 @@ $$
     \green Z_N \mo z_N \and 
 	\dotsb \and 
 	Z_1 \mo z_1 
-    \black\pmb{\|[\big]}  {\yI} \bigr)
+    \black\pmb{\|}  {\yI} \bigr)
 }
 	\\[3ex]
 	&\qquad{}
@@ -157,14 +155,14 @@ $$
 
 \
 
-{{< fa star-half-alt >}} Inferences about predictands $\bY$ of a new unit, given its predictors $\bX$ and given both predictands & predictors of observed units
+[**Inferences about predictands $\bY$ of a new unit, given its predictors $\bX$ and given both predictands & predictors of observed units**]{.blue}
 : 
 
 $$
 \begin{aligned}
     &\P\bigl(
 	\red Y_{N+1} \mo y_{N+1}
-\black \pmb{\|[\big]} 
+\black \pmb{\|} 
 	\green X_{N+1} \mo x_{N+1}\, \and\,
     Y_N \mo y_N \and X_N \mo x_N \and
 	\dotsb \and 
@@ -181,7 +179,7 @@ $$
 	\and
 	\dotsb \and 
  Y_1 \mo y_1 \and X_1 \mo x_1 
-    \black\pmb{\|[\big]} {\yI} \bigr)
+    \black\pmb{\|} {\yI} \bigr)
 }{
 	 \sum_{\purple y} \P\bigl(
 	\red Y_{N+1} \mo {\purple y} \black\and
@@ -190,13 +188,13 @@ $$
  Y_N \mo y_N \and X_N \mo x_N \and
 	\dotsb \and 
 	Y_1 \mo y_1 \and X_1 \mo x_1 
-    \black\pmb{\|[\big]}  {\yI} \bigr)
+    \black\pmb{\|}  {\yI} \bigr)
 }
 	\\[3ex]
 	&\qquad{}=
 	\frac{
 \sum_{\vf}
-f({\red Y\mo y_{N+1} \and X\mo x_{N+1}}) \cdot
+f({\red Y\mo y_{N+1} \and \green X\mo x_{N+1}}) \cdot
 f({\green Y\mo y_{N} \and X\mo x_{N}}) \cdot
 \, \dotsb\, \cdot
 f({\green Y\mo y_{1} \and X\mo x_{1}})
@@ -204,6 +202,7 @@ f({\green Y\mo y_{1} \and X\mo x_{1}})
 \P(F\mo\vf \| \yI)
 }{
 \sum_{\vf}
+f({\green X\mo x_{N+1}}) \cdot
 f({\green Y\mo y_{N} \and X\mo x_{N}}) \cdot
 \, \dotsb\, \cdot
 f({\green Y\mo y_{1} \and X\mo x_{1}})

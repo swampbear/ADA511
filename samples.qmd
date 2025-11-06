@@ -5,7 +5,7 @@
 
 ## Infinite populations {#sec-infinite-populations}
 
-The examples of populations that we explored so far comprised a small number of units, and all their data were exactly and fully known. In concrete inference and decision problems of the kind we have been focusing on in chapters [-@sec-learning] and [-@sec-3-connection-ML], we usually deal with populations that are much larger or potentially infinite; and data are known only for a small collection of their units.
+The examples of populations that we explored so far comprised a small number of units, and all their data were exactly and fully known. In concrete inference and decision problems of the kind we have been focusing on in chapters [-@sec-learning] and [-@sec-connection-3-ML], we usually deal with populations that are much larger or potentially infinite; and data are known only for a small collection of their units.
 
 In the glass-forensic example ([table @tbl-glass]), for instance, many more glass fragments could be examined beyond the 10 units reported there, with no clear bound on the total number. We could even extend that population considering glass fragments from past and future crime scenes:
 
@@ -67,7 +67,7 @@ In [§@sec-freq-distr] we defined relative frequencies. Relative frequencies are
 
 ### Learning from samples
 
-In chapters [-@sec-learning] and [-@sec-3-connection-ML] we considered an agent that must draw an inference about some units from a population. The agent's degrees of belief in that inference relied (that is, were conditional on) units already observed in the population, the "learning" or "training" data. We saw that the agent's degrees of belief changed, often becoming sharper, thanks to the information about the observed units.
+In chapters [-@sec-learning] and [-@sec-connection-3-ML] we considered an agent that must draw an inference about some units from a population. The agent's degrees of belief in that inference relied (that is, were conditional on) units already observed in the population, the "learning" or "training" data. We saw that the agent's degrees of belief changed, often becoming sharper, thanks to the information about the observed units.
 
 Units for which we have full (or almost full) information, and that an agent can use to update its beliefs, are called a [**population sample**]{.blue} or "sample" for short. Almost all data considered in engineering and data-science problems can be considered to be population samples.
 
@@ -95,7 +95,8 @@ In the inference and decision problems under our focus we would like to use a sa
 In many cases it is *impossible* for a sample of given size to be fully "representative":
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 
 Consider the following population of 16 units, with four binary variates $W,X,Y,Z$, each with values $0$ and $1$:
 
@@ -168,7 +169,8 @@ $$
 This particular number has important practical consequences; for example it is related to the maximum rate at which a communication channel can send symbols (which can be considered as values of a variate) with an error as low as we please.
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 - Calculate the Shannon entropy of the joint frequency distribution for the four-bit population of [table @tbl-four-bit].
 
 - Calculate the minimum representative-sample size according to the Shannon-entropy formula. Is the result intuitive?
@@ -180,7 +182,7 @@ If we are only interested in a smaller number of variates of a population, then 
 
 ::: {.callout-warning}
 ## {{< fa book >}} Study reading
-Kruskal & al. 1979: [*Representative Sampling, I*](references.html)
+[**Skim through**]{.lightblue} Kruskal & al. 1979: [*Representative Sampling, I*](references.html)
 :::
 
 
@@ -197,6 +199,7 @@ The only way to counteract the misleading information given by a biased sample i
 For some populations, the mean and standard deviation calculated in a sample can be wildly different from those of the full population -- even when the sample comprises half of the full population! This does not happen with the median and quartiles. Here is a demonstration in `R`. Try it out in your favourite programming language.
 
 :::{.callout-caution}
+
 ## {{< fa user-edit >}} Guided exercise
 
 We imagine to have a population of 1 000 000 units. These units have continuous interval variates $X$ and $Y$, each with an approximately standard Gaussian frequency distribution. These variates are not actual part of the population definition, however. Rather, an agent only has access to, or maybe it's only interested in, the ratio of these two variates $Z \defd X/Y$.
@@ -206,16 +209,21 @@ The agent is in particular interested in the *mean* of the variate $Z$ in the fu
 First let's create the values of the variates $X$ and $Y$, and construct $Z$ from them:
 
 ```{r}
+#| echo: false
+knitr::opts_knit$set(root.dir = "code/")
+```
+
+```{r}
 ## Load custom plot functions
-source('code/tplotfunctions.R')
-set.seed(1000) # to reproduce results
+source('tplotfunctions.R')
+set.seed(1000) ## to reproduce results
 
-N <- 1000000 # population size
+N <- 1000000 ## population size
 
-X <- rnorm(N) # variate invisible to agent
-Y <- rnorm(N) # variate invisible to agent
+X <- rnorm(N) ## variate invisible to agent
+Y <- rnorm(N) ## variate invisible to agent
 
-Z <- X / Y # variate considered by agent
+Z <- X / Y ## variate considered by agent
 
 ## mean and median of Z in the full population
 popmean <- mean(Z)
@@ -244,7 +252,7 @@ for(sample in seq_along(samplesizes)){
 
 ## plot how sample means change with sample size, and the actual population mean
 commonmax <- 1.01 * max(abs(c(popmean, popmedian, samplemeans, samplemedians)))
-myflexiplot(x = samplesizes, y = samplemeans,
+flexiplot(x = samplesizes, y = samplemeans,
       xlab = 'sample size', ylab = 'sample mean',
       col = 2, lwd = 4,
       ylim = c(-commonmax, commonmax))
@@ -254,7 +262,7 @@ text(y = popmean, x = max(samplesizes),
     adj = c(1, 1), col = 7, cex = 1.2)
 
 ## plot how sample medians change with sample size, and the actual population median
-myflexiplot(x = samplesizes, y = samplemedians,
+flexiplot(x = samplesizes, y = samplemedians,
       xlab = 'sample size', ylab = 'sample median',
       col = 3, lwd = 4,
       ylim = c(-commonmax, commonmax))

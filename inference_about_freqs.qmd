@@ -13,8 +13,8 @@ How does such an agent calculate probabilities about units? The answer is actual
 $$
 \begin{aligned}
 &\P(
-\bZ_{u'}\mo {\blue z'} \and 
-\bZ_{u''}\mo {\blue z''} \and 
+Z_{u'}\mo { z'} \and 
+Z_{u''}\mo { z''} \and 
 \dotsb
 \| \yI
 )
@@ -22,8 +22,8 @@ $$
 &\qquad{}=
 \sum_{\vf}
 \P(
-\bZ_{u'}\mo {\blue z'} \and 
-\bZ_{u''}\mo {\blue z''} \and 
+Z_{u'}\mo { z'} \and 
+Z_{u''}\mo { z''} \and 
 \dotsb
 \| F\mo\vf \and \yI
 )
@@ -49,30 +49,30 @@ then
 
 $$
 \P(
-\bZ_{u'}\mo {\blue z'} \and 
-\bZ_{u''}\mo {\blue z''} \and 
+Z_{u'}\mo { z'} \and 
+Z_{u''}\mo { z''} \and 
 \dotsb
 \| \yI
 )
 \approx
 \sum_{\vf}
-f(\bZ\mo {\blue z'}\black) \cdot
-f(\bZ\mo {\blue z''}\black) \cdot
+f(Z\mo { z'}) \cdot
+f(Z\mo { z''}) \cdot
 \,\dotsb\ 
 \cdot
 \P(F\mo\vf \| \yI)
 $$
 
-for any (different) units $u', u'', \dotsc$ and any (even equal) values $\blue z', z'', \dotsc$.
+for any (different) units $u', u'', \dotsc$ and any (even equal) values $z', z'', \dotsc$.
 
 In the sum above, $\vf$ runs over all possible frequency distributions for the full population.
 
 [Properly speaking the sum is an integral, because $F$ is a continuous quantity. We should write $\P(
-\bZ_{u'}\mo {\blue z'} \and 
+Z_{u'}\mo { z'} \and 
 \dotsb
 \| \yI
 ) = \int 
-f(\bZ\mo {\blue z'})  \cdot
+f(Z\mo { z'})  \cdot
 \,\dotsb\ 
 \cdot
 \p(\vf \| \yI)\,\di\vf$
@@ -168,11 +168,12 @@ This formula generalizes to any population, any variates, and any number of hypo
 Mathematical and, even more, computational complications arise when we consider *all possible* frequency distributions, since there is a practically infinite number of them; they form a continuum in fact. But do not let these practical difficulties affect the intuitive picture behind them, which is simple to grasp once you've considered some simple examples.
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 Consider a state of knowledge $\se{K}'$ according to which:
 
 ::::{}
-- The rock collection may have a proportion $0/10$ of $\yy$-rocks (and $9/10$ of $\yn$-rocks); call this frequency distribution $\vf_0$
+- The rock collection may have a proportion $0/10$ of $\yy$-rocks (and $10/10$ of $\yn$-rocks); call this frequency distribution $\vf_0$
 - The rock collection may have a proportion $1/10$ of $\yy$-rocks; call this $\vf_1$
 - and so on... up to
 - a proportion $10/10$ of $\yy$-rocks; call this $\vf_{10}$
@@ -259,7 +260,8 @@ $$
 In particular, the observation of one $\yn$-rock has somewhat decreased the probability of observing a new $\yy$-rock.
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 - Calculate the minimal number of $\yn$ observations needed for lowering the agent's degree of belief of observing a $\yy$ to $55\%$ or less.
 <!-- 0.611111 0.595238 0.578431 0.562016 0.547198 -->
     
@@ -517,11 +519,13 @@ The fact that the agent is actually learning about the full-population frequenci
 
 ::: {.callout-warning}
 ## {{< fa book >}} Study reading
+[**Skim through**]{.lightblue}:
+
 - Ch. 4 of Jaynes: [*Probability Theory*](references.html)
 
 - §§8.1--8.6 of O'Hagan: [*Probability*](references.html)
 
-- Skim through Heath & Sudderth 1976: [*De finetti's theorem on exchangeable variables*](references.html)
+- Heath & Sudderth 1976: [*De finetti's theorem on exchangeable variables*](references.html)
 :::
 
 \
@@ -532,15 +536,15 @@ The general formula we found for the joint probability:
 
 $$
 \P(
-\bZ_{u'}\mo {\blue z'} \and 
-\bZ_{u''}\mo {\blue z''} \and 
+Z_{u'}\mo { z'} \and 
+Z_{u''}\mo { z''} \and 
 \dotsb
 \| \yI
 )
 \approx
 \sum_{\vf}
-f(\bZ\mo {\blue z'}\black) \cdot
-f(\bZ\mo {\blue z''}\black) \cdot
+f(Z\mo { z'}) \cdot
+f(Z\mo { z''}) \cdot
 \,\dotsb\ 
 \cdot
 \P(F\mo\vf \| \yI)
@@ -577,7 +581,8 @@ $$
 $$
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 Assume the state of knowledge $\yi[m]$ above and calculate:
 
 - $\P(\pr{heads 1st toss} \| \yi[m])$, the probability of heads at the first toss.

@@ -9,15 +9,20 @@ project:
 strip-comments: true
 
 crossref:
+  chapters: true
   fig-prefix: ""
   eq-prefix: ""
   sec-prefix: ""
   def-prefix: ""
   tbl-prefix: ""
 
+number-sections: true
 number-depth: 2
 
 callout-icon: false
+
+language:
+  callout-caution-title: "Exercise"
 
 date: last-modified
 date-format: iso
@@ -29,22 +34,26 @@ book:
   open-graph: false
   favicon: favicon.png
   cover-image: ada511logo.png
-  title: "ADA511 [0.3]{.small .grey} <br>Data Science and AI prototyping"
+  title: ADA511 0.4
+  subtitle: "Data Science and AI prototyping"
   author:
     - "P.G.L. Porta Mana [![ORCID](orcid_32x32.png){width=1em}](https://orcid.org/0000-0002-6070-0784) [{{< fa home >}}](https://portamana.org/)"
     - "S. Mæland [![ORCID](orcid_32x32.png){width=1em}](https://orcid.org/0000-0002-4652-4753)"
+    # - "Y.-C. Wang [![ORCID](orcid_32x32.png){width=1em}](https://orcid.org/0009-0007-0683-921X)"
   # downloads: pdf
   reader-mode: true
   sidebar:
     # date-format: iso
     # date: 02-02-1902
-    title: "ADA511 [0.3]{.small .grey}<br>[{{< meta date >}}]{.small .grey}<br>[ ![CC BY-SA 4.0](cc_by_sa.png){width=3em} [licence]{.small .grey}](http://creativecommons.org/licenses/by-sa/4.0)<br>"
+    title: "ADA511 [0.4]{.small .grey}<br>[{{< meta date >}}]{.small .grey}<br>[ ![CC BY-SA 4.0](cc_by_sa.png){width=3em} [licence]{.small .grey}](http://creativecommons.org/licenses/by-sa/4.0)<br>"
     logo: ada511logo8_small.png
     author:
       - name: P.G.L. Porta Mana
         orcid: 0000-0002-6070-0784
       - name: S. Mæland
         orcid: 0000-0002-4652-4753
+      - name: Y.-C. Wang
+        orcid: 0009-0007-0683-921X
     style: "docked"
     collapse-level: 3
   # search:
@@ -62,6 +71,7 @@ book:
         - connection-1-ML.qmd
     - part: "[**Inference I**]{.green}"
       chapters:
+        - Rintro1.qmd
         - inference.qmd
         - sentences.qmd
         - truth_inference.qmd
@@ -77,7 +87,9 @@ book:
     - part: "[**Inference II**]{.green}"
       chapters:
         - probability_distributions.qmd
+        - Rintro2.qmd
         - joint_probability.qmd
+        - Rintro3.qmd
         - marginal_probability.qmd
         - conditional_probability.qmd
         - conditional_summary.qmd
@@ -91,25 +103,22 @@ book:
         - subpopulations.qmd
         - samples.qmd
 
-    - part: "[**Machine learning**]{.midgrey}"
-      chapters:
-        - machine_learning_overview.qmd
-        # - decision_trees.qmd
-        - neural_networks.qmd
-        - llms.qmd
     - part: "[**Inference III**]{.green}"
       chapters:
-        - beyond-ML.qmd
+        - categorization-inferences.qmd
         - exchangeable_probabilities.qmd
         - inference_from_freqs.qmd
         - inference_about_freqs.qmd
+        - dirichlet-mixture.qmd
         - summary_formulae.qmd
+
     - part: "[**A prototype Optimal Predictor Machine**]{.red}"
       chapters:
-        - dirichlet-mixture.qmd
+        - look_behind.qmd
         - code_design.qmd
         - prototype_code.qmd
         - example_opm1.qmd
+        - slm.qmd
 #        - OPM_application_nominal.qmd
 
     - part: "[**Decision-making**]{.blue}"
@@ -117,8 +126,15 @@ book:
         - utilities.qmd
         - making_decisions.qmd
         - example_opm2.qmd
-    - part: "[**Further connections with present-day machine-learning**]{.midgrey}"
+        - slm2.qmd
+
+    - part: "[**Approximations: machine learning**]{.midgrey}"
       chapters:
+        - machine_learning_overview.qmd
+        - decision_trees.qmd
+        - neural_networks.qmd
+#        - llms.qmd
+#        - beyond-ML.qmd
         - limitations_ML.qmd
         - utilities_evaluation.qmd
     - part: "[**Conclusion**]{.lightblue}"
@@ -162,9 +178,18 @@ format:
   #   include-in-header:
   #     - text:
   #         \usepackage{mathtools}
+# custom-callout:
+#   callout-exercise:
+#     type: "exercise"
+#     title: "Exerciseo"
+#     icon-symbol: ""
+#     color: "#CCBB44"
 
 filters:
   - mathpunctuation.lua
+  - calloutid.lua
+
+# - custom-numbered-blocks
 #  - center-images.lua
 
   # pdf:

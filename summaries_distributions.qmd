@@ -44,7 +44,8 @@ It's the *probability* that's distributed among the possible values, not the qua
 
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 Consider three sentences $\yX_1, \yX_2, \yX_3$ that are mutually exclusive and exhaustive on conditional $\yI$, that is:
 $$
 \begin{gathered}
@@ -207,7 +208,8 @@ Suppose that we have 50 lines available to distribute this way. Where should we 
 
 ::::{.column-page-right}
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 :::::{style="font-size:110%;"}
 Which of these plots shows the correct placement of the 50 lines? [(NB: the placement of the correct one is determined by a pseudorandom-number generator.)]{.small}
 

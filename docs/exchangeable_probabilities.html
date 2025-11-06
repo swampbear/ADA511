@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-10-30">
+<meta name="dcterms.date" content="2025-11-01">
 
-<title>28&nbsp; Exchangeable beliefs – ADA511 [0.3]{.small .grey} &lt;br&gt;Data Science and AI prototyping</title>
+<title>25&nbsp; Exchangeable beliefs – ADA511 0.4</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./inference_from_freqs.html" rel="next">
-<link href="./beyond-ML.html" rel="prev">
+<link href="./categorization-inferences.html" rel="prev">
 <link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -117,7 +117,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-exchangeable-beliefs" class="quarto-section-identifier"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><span class="green">Exchangeable beliefs</span></span></span></h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-exchangeable-beliefs" class="quarto-section-identifier"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"><span class="green">Exchangeable beliefs</span></span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -134,7 +134,7 @@ window.Quarto = {
       <img src="./ada511logo8_small.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">ADA511 <span class="small grey">0.3</span><br><span class="small grey">2024-10-30</span><br></a><a href="http://creativecommons.org/licenses/by-sa/4.0"><img src="cc_by_sa.png" class="img-fluid" style="width:3em" alt="CC BY-SA 4.0"> <span class="small grey">licence</span></a><br> 
+      <a href="./">ADA511 <span class="small grey">0.4</span><br><span class="small grey">2025-11-01</span><br></a><a href="http://creativecommons.org/licenses/by-sa/4.0"><img src="cc_by_sa.png" class="img-fluid" style="width:3em" alt="CC BY-SA 4.0"> <span class="small grey">licence</span></a><br> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -207,6 +207,12 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rintro1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="lightblue">Working with R, I</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
@@ -291,8 +297,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Rintro2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="lightblue">Working with R, II</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./joint_probability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><span class="green">Joint probability distributions</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rintro3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="lightblue">Working with R, III</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -365,7 +383,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="midgrey"><strong>Machine learning</strong></span></span></a>
+ <span class="menu-text"><span class="green"><strong>Inference III</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -373,20 +391,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./machine_learning_overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to machine learning</span></span></a>
+  <a href="./categorization-inferences.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title"><span class="green">A categorization of inferences</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./neural_networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  <a href="./exchangeable_probabilities.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"><span class="green">Exchangeable beliefs</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Large Language Models</span></span></a>
+  <a href="./inference_from_freqs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"><span class="green">Inferences from frequencies</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_about_freqs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><span class="green">Inference about frequencies</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dirichlet-mixture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><span class="green">Example of belief over frequencies: the Dirichlet-mixture distribution</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary_formulae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><span class="green">Final inference formulae for exchangeable beliefs</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -394,7 +430,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="green"><strong>Inference III</strong></span></span></a>
+ <span class="menu-text"><span class="red"><strong>A prototype Optimal Predictor Machine</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -402,32 +438,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./beyond-ML.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><span class="green">Beyond machine learning</span></span></span></a>
+  <a href="./look_behind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"><span class="red">A look behind</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exchangeable_probabilities.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><span class="green">Exchangeable beliefs</span></span></span></a>
+  <a href="./code_design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"><span class="red">Implementing an OPM</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inference_from_freqs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><span class="green">Inferences from frequencies</span></span></span></a>
+  <a href="./prototype_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title"><span class="red">Prototype code and workflow</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inference_about_freqs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"><span class="green">Inference about frequencies</span></span></span></a>
+  <a href="./example_opm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title"><span class="red">Example application: adult-income task</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary_formulae.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"><span class="green">Final inference formulae</span></span></span></a>
+  <a href="./slm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title"><span class="red">Example application: “small language model”</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -435,7 +471,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="red"><strong>A prototype Optimal Predictor Machine</strong></span></span></a>
+ <span class="menu-text"><span class="blue"><strong>Decision-making</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -443,26 +479,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dirichlet-mixture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title"><span class="red">The Dirichlet-mixture belief distribution</span></span></span></a>
+  <a href="./utilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"><span class="blue">Utilities</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./code_design.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title"><span class="red">Code design</span></span></span></a>
+  <a href="./making_decisions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title"><span class="blue">Making decisions</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prototype_code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title"><span class="red">Prototype code and workflow</span></span></span></a>
+  <a href="./example_opm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title"><span class="red">The prototype Optimal Predictor Machine makes decisions</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./example_opm1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"><span class="red">Example application: adult-income task</span></span></span></a>
+  <a href="./slm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title"><span class="red">The Optimal Predictor Machine generates text</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -470,7 +506,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="blue"><strong>Decision-making</strong></span></span></a>
+ <span class="menu-text"><span class="midgrey"><strong>Approximations: machine learning</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -478,20 +514,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utilities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title"><span class="blue">Utilities</span></span></span></a>
+  <a href="./machine_learning_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Introduction to machine learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./making_decisions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title"><span class="blue">Making decisions</span></span></span></a>
+  <a href="./decision_trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Decision trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./example_opm2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title"><span class="red">The prototype Optimal Predictor Machine makes decisions</span></span></span></a>
+  <a href="./neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./limitations_ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title"><span class="darkgrey">Decisions: limitations of present-day machine-learning algorithms</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utilities_evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title"><span class="darkgrey">Evaluation practices and utilities</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -499,35 +547,12 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="midgrey"><strong>Further connections with present-day machine-learning</strong></span></span></a>
+ <span class="menu-text"><span class="lightblue"><strong>Conclusion</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./limitations_ML.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title"><span class="midgrey">Decisions: limitations of present-day machine-learning algorithms</span></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./utilities_evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title"><span class="midgrey">Evaluation practices and utilities</span></span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="lightblue"><strong>Conclusion</strong></span></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./whither.html" class="sidebar-item-text sidebar-link">
@@ -564,9 +589,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-recap-before-exchang" id="toc-sec-recap-before-exchang" class="nav-link active" data-scroll-target="#sec-recap-before-exchang"><span class="header-section-number">28.1</span> Recap</a></li>
-  <li><a href="#sec-excheable-beliefs" id="toc-sec-excheable-beliefs" class="nav-link" data-scroll-target="#sec-excheable-beliefs"><span class="header-section-number">28.2</span> States of knowledge with symmetries</a></li>
-  <li><a href="#sec-exchaneable-distr" id="toc-sec-exchaneable-distr" class="nav-link" data-scroll-target="#sec-exchaneable-distr"><span class="header-section-number">28.3</span> Exchangeable probability distributions</a>
+  <li><a href="#sec-recap-before-exchang" id="toc-sec-recap-before-exchang" class="nav-link active" data-scroll-target="#sec-recap-before-exchang"><span class="header-section-number">25.1</span> Recap</a></li>
+  <li><a href="#sec-excheable-beliefs" id="toc-sec-excheable-beliefs" class="nav-link" data-scroll-target="#sec-excheable-beliefs"><span class="header-section-number">25.2</span> States of knowledge with symmetries</a></li>
+  <li><a href="#sec-exchaneable-distr" id="toc-sec-exchaneable-distr" class="nav-link" data-scroll-target="#sec-exchaneable-distr"><span class="header-section-number">25.3</span> Exchangeable probability distributions</a>
   <ul class="collapse">
   <li><a href="#further-constraints" id="toc-further-constraints" class="nav-link" data-scroll-target="#further-constraints">Further constraints</a></li>
   </ul></li>
@@ -578,7 +603,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-exchangeable-beliefs" class="quarto-section-identifier"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><span class="green">Exchangeable beliefs</span></span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="sec-exchangeable-beliefs" class="quarto-section-identifier"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"><span class="green">Exchangeable beliefs</span></span></span></h1>
 </div>
 
 
@@ -589,7 +614,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-10-30</p>
+      <p class="date">2025-11-01</p>
     </div>
   </div>
   
@@ -602,19 +627,19 @@ window.Quarto = {
 
 
 <div class="hidden">
-<p><span class="math inline">\(\DeclarePairedDelimiter{\set}{\{}{\}}\)</span> </p>
+<p><span class="math inline">\(\DeclarePairedDelimiter{\set}{\{}{\}}\)</span> <span style="display:inline-block;"><span class="math inline">\(\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}\)</span></span> </p>
 </div>
 <div class="hidden">
 
 </div>
-<section id="sec-recap-before-exchang" class="level2 page-columns page-full" data-number="28.1">
-<h2 data-number="28.1" class="anchored" data-anchor-id="sec-recap-before-exchang"><span class="header-section-number">28.1</span> Recap</h2>
+<section id="sec-recap-before-exchang" class="level2 page-columns page-full" data-number="25.1">
+<h2 data-number="25.1" class="anchored" data-anchor-id="sec-recap-before-exchang"><span class="header-section-number">25.1</span> Recap</h2>
 <p>In the chapters of part <span class="green">Inference&nbsp;I</span> we had an overview of how an agent can draw inferences and make predictions of the most general kind, expressed by general sentences, using the four fundamental rules of inference.</p>
 <p>Then, in part <span class="green">Inference&nbsp;II</span>, we successively narrowed our focus on more and more specialized kinds of inference, typical of engineering and data-science problems and of machine-learning algorithms. First we considered inferences about measurements and observations, then inferences about multiple instances of similar measurements and observations. The idea was that an agent can arrive at sharper degrees of belief – that is, it can <em>learn</em> – by using information about “similar instances”.</p>
 <p>For these purposes we introduced a specialized language about quantities and data types in part <span class="yellow">Data&nbsp;I</span>, and about “populations” of similar “units” in part <span class="yellow">Data&nbsp;II</span>.</p>
-<p>In the <span class="red">Machine&nbsp;learning</span> part we took an overview of current machine-learning methods, and then focused on several types of tasks that popular machine-learning algorithms, such as deep networks and random forests, purport to solve. We found a remarkable result: a perfect agent – one that operates according to Probability Theory – can in principle perform <em>any and all</em> of those tasks by using the joint probability distribution</p>
+<p>In <a href="categorization-inferences.html" class="quarto-xref">ch.&nbsp;&nbsp;<span>24</span></a> we had an overview of possible types of tasks, many of which are typical of machine learning algorithms such as deep networks and random forests. <strong>We found a remarkable result:</strong> a perfect agent – one that operates according to Probability Theory – can in principle perform <em>any and all</em> of those tasks by using the joint probability distribution</p>
 <p><span class="math display">\[
-\mathrm{P}(\color[RGB]{68,119,170}
+\mathrm{P}(
 Y_{N+1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}y_{N+1}
 \mathbin{\mkern-0.5mu,\mkern-0.5mu}
 X_{N+1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}x_{N+1}
@@ -622,15 +647,16 @@ X_{N+1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern
 Y_{1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}y_{1}
 \mathbin{\mkern-0.5mu,\mkern-0.5mu}
 X_{1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}x_{1}
-\color[RGB]{0,0,0}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I})
+\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I})
 \]</span></p>
-<p>The agent only needs to do some calculations with this joint distribution, involving sums and divisions. This distribution must be specified for all possible values of <span style="display:inline-block;"><span class="math inline">\(\color[RGB]{68,119,170}x_{1}, \dotsc, x_{N+1}\)</span>,</span> <span style="display:inline-block;"><span class="math inline">\(\color[RGB]{68,119,170}y_{1}, \dotsc, y_{N+1}\)</span>,</span> and <span style="display:inline-block;"><span class="math inline">\(N\)</span>.</span></p>
-<p>Take “supervised learning” for example, that is, the task of predicting some variates (predictands) for a new unit, from knowledge of other variates (predictors) for the same unit and of all variates for <span style="display:inline-block;"><span class="math inline">\(N\)</span></span> other units. Solving this task corresponds to calculating</p>
+<p>where <span style="display:inline-block;"><span class="math inline">\(Y\)</span></span> and <span style="display:inline-block;"><span class="math inline">\(X\)</span></span> are the variates of interest.</p>
+<p>The agent only needs to do some calculations with this joint distribution, involving sums and divisions. This distribution must be specified for all possible values of <span style="display:inline-block;"><span class="math inline">\(x_{1}, \dotsc, x_{N+1}\)</span>,</span> <span style="display:inline-block;"><span class="math inline">\(y_{1}, \dotsc, y_{N+1}\)</span>,</span> and <span style="display:inline-block;"><span class="math inline">\(N\)</span>.</span></p>
+<p>For example take the task of predicting some variates (predictands) for a new unit, from knowledge of other variates (predictors) for the same unit and of all variates for <span style="display:inline-block;"><span class="math inline">\(N\)</span></span> other units. Solving this task corresponds to calculating</p>
 <div class="column-page-inset-right">
 <p><span class="math display">\[
 \begin{aligned}
     &amp;\mathrm{P}\bigl(
-    {\color[RGB]{238,102,119}Y_{N+1} \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}y}
+    {\color[RGB]{238,102,119}Y_{N+1} \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}y_{N+1}}
     \pmb{\nonscript\:\big\vert\nonscript\:\mathopen{}}
     {\color[RGB]{34,136,51}X_{N+1} \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}x_{N+1}}\, \mathbin{\mkern-0.5mu,\mkern-0.5mu}\,
     \color[RGB]{34,136,51}Y_N \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}y_N \mathbin{\mkern-0.5mu,\mkern-0.5mu}X_N \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}x_N \mathbin{\mkern-0.5mu,\mkern-0.5mu}
@@ -641,7 +667,7 @@ X_{1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0
     &amp;\qquad{}=
     \frac{
         \mathrm{P}\bigl(
-    \color[RGB]{238,102,119}Y_{N+1} \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}y \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+    \color[RGB]{238,102,119}Y_{N+1} \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}y_{N+1} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
     \color[RGB]{34,136,51}X_{N+1} \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}x_{N+1}
     \color[RGB]{0,0,0}
         \mathbin{\mkern-0.5mu,\mkern-0.5mu}
@@ -664,13 +690,15 @@ X_{1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0
 \]</span></p>
 </div>
 <p><br>
-To build an AI agent that deals with these kinds of task we must: (1) choose a joint distribution according to reasonable assumptions and background information, (2) encode it in a computationally feasible way.</p>
+To build an AI agent that deals with these kinds of task we must:</p>
+<ol type="1">
+<li>choose a joint distribution according to reasonable assumptions and background information,</li>
+<li>encode it in a computationally feasible way.</li>
+</ol>
 <p>In order to reach these two goals we shall now narrow our focus further, upon inferences satisfying a condition that greatly simplifies the calculations, and that is also reasonable in many real inference problems – and it is moreover typical of many “supervised” and “unsupervised” machine-learning applications.</p>
-<p><br>
-</p>
 </section>
-<section id="sec-excheable-beliefs" class="level2 page-columns page-full" data-number="28.2">
-<h2 data-number="28.2" class="anchored" data-anchor-id="sec-excheable-beliefs"><span class="header-section-number">28.2</span> States of knowledge with symmetries</h2>
+<section id="sec-excheable-beliefs" class="level2 page-columns page-full" data-number="25.2">
+<h2 data-number="25.2" class="anchored" data-anchor-id="sec-excheable-beliefs"><span class="header-section-number">25.2</span> States of knowledge with symmetries</h2>
 <p>An agent’s degrees of belief about a particular population may satisfy a special symmetry called <span class="blue"><strong>exchangeability</strong></span>. This symmetry can be understood from different points of view. Let’s start from one of these viewpoints, and then make connections with alternative ones.</p>
 <p>Take again two populations briefly mentioned in <a href="populations_variates.html#sec-collections" class="quarto-xref">§&nbsp;<span>20.1</span></a>:</p>
 <ul>
@@ -713,13 +741,13 @@ Suppose that, in each of these populations, you (the agent) don’t know the var
 <blockquote class="blockquote">
 <p><span class="blue"><em>Would it be acceptable to you if only the <strong>frequencies</strong> of the values (<span class="math inline">\(\set{{\color[RGB]{34,136,51}{\small\verb;+;}},{\color[RGB]{238,102,119}{\small\verb;-;}}}\)</span> in one case, <span class="math inline">\(\set{{\color[RGB]{102,204,238}{\small\verb;Y;}},{\color[RGB]{204,187,68}{\small\verb;N;}}}\)</span> in the other) for the 100 known units were given to you?</em></span></p>
 </blockquote>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div id="cau-unique1" class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise
+Exercise&nbsp;25.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -732,8 +760,8 @@ Suppose that, in each of these populations, you (the agent) don’t know the var
 <p>Many kinds of inference considered in data science and engineering, and all inferences done with “supervised” or “unsupervised” machine-learning algorithms, are examples where <em>any ordering of the data used for learning is deemed irrelevant</em> and is, in fact, often lost. This irrelevance is clear from the data-shuffling involved in many procedures that accompany these algorithms.</p>
 <p>We shall thus restrict our attention to situations and kinds of background information where this judgement of irrelevance is considered appropriate. In reality this is not a black-or-white situation: it is possible that some kind of ordering information would improve our inferences; what we are assuming here is that this improvement is so small that it can be neglected altogether.</p>
 </section>
-<section id="sec-exchaneable-distr" class="level2 page-columns page-full" data-number="28.3">
-<h2 data-number="28.3" class="anchored" data-anchor-id="sec-exchaneable-distr"><span class="header-section-number">28.3</span> Exchangeable probability distributions</h2>
+<section id="sec-exchaneable-distr" class="level2 page-columns page-full" data-number="25.3">
+<h2 data-number="25.3" class="anchored" data-anchor-id="sec-exchaneable-distr"><span class="header-section-number">25.3</span> Exchangeable probability distributions</h2>
 <p>Let’s take the Mars-prospecting problem as a concrete example. Denote by <span style="display:inline-block;"><span class="math inline">\(H\)</span></span> the variate expressing haematite presence, with domain <span style="display:inline-block;"><span class="math inline">\(\set{{\color[RGB]{102,204,238}{\small\verb;Y;}}, {\color[RGB]{204,187,68}{\small\verb;N;}}}\)</span>.</span></p>
 <p>If an agent’s background information or assumption <span style="display:inline-block;"><span class="math inline">\(\mathsfit{I}\)</span></span> says that the relative order of units – rocks in this case – is irrelevant for inferences about other units, then it means that a probability such as</p>
 <p><span class="math display">\[
@@ -886,18 +914,18 @@ U_{39}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 
 <p>because both have: <span class="m">one <span class="math inline">\(({\color[RGB]{238,102,119}{\small\verb;fail;}},{\color[RGB]{102,204,238}-1})\)</span>,</span>&nbsp;&nbsp;<span class="m">two <span class="math inline">\(({\color[RGB]{238,102,119}{\small\verb;fail;}},{\color[RGB]{119,119,119}0})\)</span>,</span>&nbsp;&nbsp;<span class="m">zero <span class="math inline">\(({\color[RGB]{238,102,119}{\small\verb;fail;}},{\color[RGB]{204,187,68}1})\)</span>,</span>&nbsp;&nbsp;<span class="m">three <span class="math inline">\(({\color[RGB]{34,136,51}{\small\verb;pass;}},{\color[RGB]{102,204,238}-1})\)</span>,</span>&nbsp;&nbsp;<span class="m">zero <span class="math inline">\(({\color[RGB]{34,136,51}{\small\verb;pass;}},{\color[RGB]{119,119,119}0})\)</span>,</span>&nbsp;&nbsp;<span class="m">one <span class="math inline">\(({\color[RGB]{34,136,51}{\small\verb;pass;}},{\color[RGB]{204,187,68}1})\)</span>.</span> From this example, note that it’s important to count the occurrences of the <em>joint</em> values, not of the values of the single variates independently.</p></li>
 </ol>
 </div>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div id="cau-unique2" class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise
+Exercise&nbsp;25.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>First let’s check that you haven’t forgotten the basics about connectives (<a href="sentences.html#sec-connecting-sentences" class="quarto-xref">§&nbsp;<span>6.4</span></a>), Boolean algebra <a href="derived_rules.html#sec-boolean" class="quarto-xref">§&nbsp;<span>9.2</span></a>), and the four fundamental rules of inference (<a href="probability_inference.html#sec-fundamental" class="quarto-xref">§&nbsp;<span>8.4</span></a>):</p>
+<li><p>First let’s check that you haven’t forgotten the basics about connectives (<a href="sentences.html#sec-connecting-sentences" class="quarto-xref">§&nbsp;<span>6.4</span></a>), Boolean algebra <a href="derived_rules.html#sec-boolean" class="quarto-xref">§&nbsp;<span>9.1</span></a>), and the four fundamental rules of inference (<a href="probability_inference.html#sec-fundamental" class="quarto-xref">§&nbsp;<span>8.4</span></a>):</p>
 <ul>
 <li><p>How much is&nbsp;&nbsp;<span class="m"><span class="math inline">\(\mathrm{P}(Y_4\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{238,102,119}{\small\verb;low;}}\nonscript\:\vert\nonscript\:\mathopen{} Y_4\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{238,102,119}{\small\verb;low;}}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{J})\)</span> ?</span></p></li>
 <li><p>Simplify the probability</p></li>
@@ -966,13 +994,13 @@ U_{39}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 
 \end{gathered}
 \]</span></p>
 <p>are completely determined if we specify just one of them.</p>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div id="cau-unique3" class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise
+Exercise&nbsp;25.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1397,13 +1425,13 @@ U_{39}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./beyond-ML.html" class="pagination-link" aria-label="[Beyond machine learning]{.green}">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><span class="green">Beyond machine learning</span></span></span>
+      <a href="./categorization-inferences.html" class="pagination-link" aria-label="[A categorization of inferences]{.green}">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title"><span class="green">A categorization of inferences</span></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./inference_from_freqs.html" class="pagination-link" aria-label="[Inferences from frequencies]{.green}">
-        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><span class="green">Inferences from frequencies</span></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"><span class="green">Inferences from frequencies</span></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

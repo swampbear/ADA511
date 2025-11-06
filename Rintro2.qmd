@@ -1,0 +1,208 @@
+# [Working with R, II]{.lightblue} {.unnumbered}
+{{< include macros.qmd >}}
+
+R has a wide range of basic plotting functions, and in addition to them there are many plotting libraries. Here we shall see examples of how to create the kinds of plot discussed in [chapter @sec-prob-distribs], using basic R functions and custom functions used in these notes.
+
+```{r}
+#| echo: false
+knitr::opts_knit$set(root.dir = "code/")
+```
+
+## Plotting pairs of values in R {#sec-R-plotting-pair}
+
+A very simple kind of plot is the one where we plot a sequence of values against another sequence *of the same length*, interpreting the first as x-axis and the second as y-axis. This can be done with the base R function [`plot()`](https://stat.ethz.ch/R-manual/R-patched/library/base/html/plot.html). Here we consider sequences `a` and `b`, with six values each:
+
+```{r}
+a <- c(1, 2, 3, 4, 5, 6)
+b <- c(0.05, 0.3, 0.4, 0.2, 0.03, 0.02)
+
+plot(x = a, y = b)
+```
+
+You notice that the names of the variables appear automatically on the axes, and the pairs of points are represented by small, empty circles. If we want to join the points with `l`ines we can use the `type = 'l'` argument; with `type = 'b'` we get both circles and lines. The `l`ine `w`i`d`th is controlled by the `lwd =` argument, and the `l`ine `ty`pe (solid, dashed, dotted, and so on) by the `lty =` argument. The colour by `col =`. We can also change the axes' labels with `xlab =` and `ylab =`, and the ranges of the two axes with `xlim =` and `ylim =`. Let's see two examples:
+
+```{r}
+
+plot(x = a, y = b,
+    type = 'l',
+    lwd = 1, lty = 1, col = 1,
+    xlab = 'quantity A', ylab = 'quantity B',
+    xlim = c(-3, 7), ylim = c(-1, 1))
+
+plot(x = a, y = b,
+    type = 'b',
+    lwd = 3, lty = 2, col = 2,
+    xlab = 'quantity A', ylab = 'quantity B',
+    xlim = c(0.5, 6.5), ylim = c(0, 0.5))
+```
+
+Note that the sum of `b` values is 1:
+
+```{r}
+sum(b)
+```
+
+so `b` could be a discrete probability distribution for the quantity `a`.
+
+### A custom plot function
+
+If the quantity `a` is non-numeric, for instance a sequence of character strings, then we must first somehow convert it to numbers in order to use `plot()`, otherwise we get an error.
+
+In these notes we use the custom function `flexiplot()`, which takes care of such conversions internally. We can load it from the file [`tplotfunctions.R`](https://github.com/pglpm/ADA511/blob/master/code/tplotfunctions.R), which you should have already downloaded:
+
+```{r}
+source('tplotfunctions.R')
+```
+
+Consider a quantity `animal` that could be one of six possible animals, and  the distribution of probability over them, assigned to a variable `prob`. With `flexiplot()` we can plot the probability distribution as follows:
+
+```{r}
+animal <- c('cat', 'dog', 'chicken', 'cow', 'pig', 'horse')
+prob1 <- c(0.05, 0.3, 0.4, 0.2, 0.03, 0.02)
+
+flexiplot(x = animal, y = prob1, type = 'b', ylim = c(0, NA))
+```
+
+Note how the animal names appear in the x-axis, in the order specified. The range specification `ylim = c(0, NA)` (not available for `plot()`) says that the lower range should be $0$, and the upper range should be the maximum available among the y-axis values.
+\
+
+Suppose we need to plot two different probability distributions (or two different sets of y-values more generally), stored in the variables `prob1` and `prob2`, for the same x-values, as in the last plot of [§@sec-discr-prob-distr]. We can do this by `c`olumn-`bind`ing them together into an array with two columns with the [`cbind()`](https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html) function, and then giving this array as the `y =` argument:
+
+```{r}
+prob2 <- c(0.2, 0.6, 0.05, 0.04, 0.01, 0.1)
+
+flexiplot(x = animal, y = cbind(prob1, prob2),
+    type = 'b', ylim = c(0, NA),
+    ylab = 'two probability distributions')
+```
+
+We could also issue two separate `flexiplot()` commands, giving the argument `add = TRUE` to the second. But in this case we must make sure to give the correct y-range already in the first plot, and we must also explicitly use different colours `col =` and line types `lty =`. Check for instance what would happen for the case above:
+
+```{r}
+## Plot for prob1
+flexiplot(x = animal, y = prob1,
+    type = 'b', ylim = c(0, NA),
+    ylab = 'two probability distributions')
+
+## Plot for prob2
+flexiplot(x = animal, y = prob2,
+    type = 'b', col = 2, lty = 2,
+    add = TRUE)
+```
+
+You see that the curve in the second plot was partly cut off, because the first plot adapted the y-range to the first curve only.
+
+\
+
+## Plotting probability densities in R {#sec-R-plotting-densities}
+
+If $X$ is a continuous quantity, we know the mathematical formula for a probability density over its domain, then the density can be plotted as pairs of values, as we did above. We need to generate many values of $X$ in the range of interest, and calculate the probability density for each from the mathematical formula.
+
+Suppose for instance that $X$ has all real numbers as its domain, and probability density $\p(X\|I)$ given by a [Gaussian, or "normal", distribution](https://mathworld.wolfram.com/NormalDistribution.html) with mean $5$ and standard deviation $3$. Its mathematical formula is
+
+$$
+\p(X\mo x \| I) = \frac{1}{\sqrt{2\pi\cdot 3^2}}\,
+\exp\biggl[
+-\frac{(x - 5)^2}{2\cdot 3^2}
+\biggr]\,.
+$$
+
+We'd like to visualize this probability density between $X\mo -7$ and $X\mo 10$. Then we proceed as follows:
+
+- Generate a large number of values, say hundreds, for $X$ from $-5$ to $10$. The number of values to generate depends on the resolution at which the final plot will be shown.
+    
+    In this example we'll generate 257 values using the function [`seq()`](https://stat.ethz.ch/R-manual/R-patched/library/base/html/seq.html) with argument `length =`, and store them in the variable `x`.
+
+- Calculate the probability density for each $X$ value generated. In R this is often easy, as we can give the whole sequence of numbers to a mathematical function.
+    
+    In R, the formula for the Gaussian distribution is given by the function [`dnorm()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/Normal.html) with arguments `mean =` and `sd =`.
+
+- Plot the pairs of values generated.
+
+```{r}
+x <- seq(from = -7, to = 10, length = 257)
+
+p <- dnorm(x, mean = 5, sd = 3)
+
+flexiplot(x = x, y = p, ylim = c(0, NA), ylab = 'p(x | I)')
+```
+
+If we need to display more densities in the same plot we can proceed as described in the previous section.
+
+R has built-in functions for many common probability densities; they all have the form `d...()`, take a look at the [index](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/00Index.html). Packages like [**extraDistr**](https://cran.r-project.org/package=extraDistr) provide even more densities.
+
+
+\
+
+## 1D scatter plots in R {#sec-R-1Dscatter}
+
+What if we want to represent a probability density as a scatter plot, as was done in [§@sec-represent-dens]?
+
+First of all we need to generate sample points that reflect the probability density. R has built-in functions to generate sample points for many common densities; they have the form `r...()` corresponding to the `d...()` one. For instance, to generate 100 points from a Gaussian density we can use `rnorm()` with arguments `n =` for the number of points, and `mean =`, `sd =` for the mean and standard deviation. Packages like [**extraDistr**](https://cran.r-project.org/package=extraDistr) also provide point generators.
+
+How many sample points should we generate? The answer is heavily context- and problem-dependent. Too few points, say a dozen, may not give any clear idea of the density. Too many, say thousands, may end up producing a compact blob where no density differences are discernible. It also depends on the structure of the probability density itself. Around a 100 sample points or so may be a good starting point. But if you need to explore regions of the domain where the probability density is low, then you'll need more points.
+
+Let's generate 100 sample points for the Gaussian density of the previous example, storing them in the `samples` variable:
+
+```{r}
+samples <- rnorm(n = 100, mean = 5, sd = 3)
+```
+
+Then we need to display these points in a graph.
+
+R has the built-in function [`rug()`](https://stat.ethz.ch/R-manual/R-patched/library/graphics/html/rug.html) to display the sample points as thin vertical lines on the x-axis. The argument `ticksize =` specifies the length of these lines: `1` means the whole plot's height, `0.5` half the plot's height, and so on. You can also choose colour and line type and width with the usual `col =`, `lty =`, `lwd =` arguments.
+
+Let's use this function to add to the previous plot the sample points we just generated (we also redraw the plot):
+
+```{r}
+## Redraw the plot
+flexiplot(x = x, y = p, ylim = c(0, NA), ylab = 'p(x | I)')
+
+rug(samples, ticksize = 0.25, col = 2)
+```
+
+Our custom function `flexiplot()` can also draw 1D scatter plots. In the present example, we simply need to give it the sample points as the `x =` argument alone:
+
+```{r}
+flexiplot(x = samples)
+```
+
+You notice that the density around $X\mo 5$ is not very clear; there are too many overlapping circles. We can use small bars instead, with the argument `pch = '|'`:
+
+```{r}
+flexiplot(x = samples, pch = '|')
+```
+
+Still another alternative is to generate many sample points and represent them as a cloud of dots, which also extends in the y-direction. This is done by using the arguments `pch = '.'` and `yjitter = TRUE`. Let's first generate 10 000 sample points and then plot them this way:
+
+```{r}
+## generate new sample points
+samples <- rnorm(n = 10000, mean = 5, sd = 3)
+
+flexiplot(x = samples, pch = '.', yjitter = TRUE)
+```
+
+\
+
+Finally, let's suppose we want two visualize and compare two different probability densities for $X$: the Gaussian distribution from before, and a [Cauchy distribution](https://mathworld.wolfram.com/CauchyDistribution.html). We can do this by generating sample points for both, and then plot them together with `flexiplot()` as discussed above.
+
+First let's generate 10 000 samples from the Cauchy distribution. In R this is done with the function [`rcauchy()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/Cauchy.html), with arguments `n =`, `location =`, and `scale =`. The location and scale determine where the centre of the distribution is located, and how wide it is; we can for instance choose a location equal to $5$, as for the Gaussian, and scale equal to $1$:
+
+```{r}
+samplescauchy <- rcauchy(n = 10000, location = 5, scale = 1)
+```
+
+Now we plot them together, displaying only the range from $X\mo -10$ to $X\mo 10$. We add labels for the two distributions as `y =` arguments. For both `x =` and `y =` argument we use `cbind()`. Let's also add some nicer x- and y-labels:
+
+```{r}
+flexiplot(
+    x = cbind(samples, samplescauchy),
+    y = cbind('Gaussian', 'Cauchy'),
+    pch = '.', yjitter = TRUE,
+    xlab = 'x', ylab = 'densities',
+    xlim = c(-10, 10)
+)
+```
+
+
+

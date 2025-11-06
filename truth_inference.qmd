@@ -237,7 +237,8 @@ $\red\tru(\lnot\yh \| \ys \land \yf \land \yI) = 1$.
 We find that, indeed, the electronic component must for sure have failed the heating test!
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 Retrace the proof above step by step. At each step, how was its particular rule (indicated on the right) used?
 :::
 
@@ -253,7 +254,8 @@ The way in which the rules can be applied to arrive at the target inference is n
 :::
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 Prove the target inference $\red\tru(\lnot\yh \| \ys \land \yf \land \yI) = 1$ using the rules of truth-inference, but beginning from the starting inference [$\green\tru(\lnot\ys \land \lnot\yh \| \yf \land \yI)=1$.]{.m}
 :::
 
@@ -271,7 +273,8 @@ If you have studied Boolean algebra, you may be familiar with truth-tables; for 
 :::
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 Use the truth-inference rules for "or" and "and" to build the truth-table for "or". Check if it matches the one you already knew.
 :::
 
@@ -296,7 +299,7 @@ Many -- if not most -- inference problems that human and AI agents must face are
 Our cursory visit of formal logic only showed a microscopic part of this vast field. The study of truth-inference rules continues still today, with many exciting developments and applications. Feel free to take a look at
 
 - Huth & Ryan: [*Logic in Computer Science*](references.html)
-- Mordechai: [*Mathematical Logic for Computer Science*](references.html)
-- Pelletier & Hazen 2021/2023: [*Natural Deduction Systems in Logic*](https://plato.stanford.edu/archives/spr2023/entries/natural-deduction)
+- Ben-Ari: [*Mathematical Logic for Computer Science*](references.html)
+- Pelletier & Hazen: [*Natural Deduction Systems in Logic*](https://plato.stanford.edu/archives/spr2023/entries/natural-deduction)
 :::
 ::::

@@ -1,0 +1,173 @@
+# [The Optimal Predictor Machine generates text]{.red} {#sec-example-slm2}
+{{< include macros.qmd >}}
+{{< include macros_exchangeability.qmd >}}
+{{< include macros_opm.qmd >}}
+
+```{r}
+#| echo: false
+knitr::opts_knit$set(root.dir = "code/")
+options(repr.plot.width = 6 * sqrt(2), repr.plot.height = 6)
+```
+
+## Agents that generate text: what's the underlying decision-making problem? {#sec-what-decision-llm}
+
+In [§@sec-language-inference] we saw that present-day Large Language Model determine their belief in what the next word or token should be, only based on the sequence of words seen so far, and on the frequencies of such sequences in a huge collection of texts. These beliefs are not determined on possible future outcomes of their choice of words, as instead is the case in human conversation. We managed to use our Optimal Predictor Machine in the same way in a simplified setting.
+
+Large Language Models do not output probabilities, however: they output words. So at every step they are effectively choosing one of the possible words about which they calculated their beliefs. This is decision, and to be optimal and self-consistent it should be based on some outcomes and their utilities.
+
+What are the outcomes and utilities underlying word-choice in Large Language Models? This is still an open question. The approaches followed so far in the literature have been based more on intuition and on "playing around" rather than framing the problem in a systematic way. This means that there's a lot of room for an AI engineer to bring forth a better understanding and major improvements.
+\
+
+Let's consider our OPM agent used as a "small language model" in [§@sec-opm-as-slm]. It was only calculating degrees of belief about the $n$th token of a string of $n$ tokens. First of all let's ask again: beliefs about what? We could say: the belief that this $n$th token is the correct one, in this particular sequence. Keep in mind that this is a suspicious point of view; can we really say that there's a "correct" token?
+
+If we want our OPM agent to also *choose* one of the possible tokens, we need to find the appropriate set of outcomes and their utilities for this decision problem.
+
+:::{.callout-caution}
+
+On your own or in group, think about the problem above.
+
+- What kind of meaningful *outcomes* are there in this problem?
+
+- Can they be easily assessed? Do they depend on the choice of present token alone, or in future ones as well?
+
+- What are the utility values for the outcomes? How to assess them?
+
+- Can we find alternative points of view about outcomes and utilities -- points of view that do not reflect natural language but may make sense somehow in the present context?
+:::
+
+## A tentative decision-making point of view {#sec-tentative-decision-llm}
+
+A *tentative* and somewhat vague point of view is the following: the agent should generate, on the long run, text that "looks natural". Now if we assign a given utility, say $+1$, to the "correct" choice of token, the agent should at each step choose the token that always has highest probability. This, however, eventually leads to a circular repetition, as soon as a string of $n-1$ token appears again. Let's see an example of this phenomenon with our OPM agent.
+
+Let's build again an agent that does inference about 3-grams from the United Nation's [*Universal Declaration of Human Rights*](https://www.un.org/en/about-us/universal-declaration-of-human-rights):
+
+```{r}
+## Load main functions
+source('tplotfunctions.R')
+source('OPM_nominal.R')
+source('textpreparation.R')
+
+## Set seed for reproducibility
+set.seed(700)
+
+## Prepare metadata and training data
+ngramfiles <- preparengramfiles(
+    inputfile = 'texts/human_rights.txt',
+    outsuffix = 'rights',
+    n = 3,
+    maxtokens = Inf
+)
+
+## Create the OPM agent
+opmSLM <- buildagent(
+    metadata = ngramfiles$metadata,
+    data = ngramfiles$data,
+    savememory = TRUE
+)
+```
+
+Now let's operate the agent as follows:
+
+0. We give an initial prompt of two tokens: `ARTICLE`, `x`.
+1. We let the agent calculate the degrees of belief about the next token.
+2. The next token is *chosen* as the one having highest probability. This corresponds to a decision process with a *unit utility matrix*: correct token choices have utility $+1$; and wrong choices, $0$.
+3. The first token is discarded, the second becomes first, and the last token generated becomes the second.
+4. Repeat from 1.
+
+```{r}
+
+## Starting tokens
+word1 <- 'ARTICLE'
+word2 <- 'x'
+
+## Convenience variable to wrap text
+textlength <- 0
+
+for(i in 1:100){
+    ## Print the starting tokens if first iteration
+    if(i == 1){ cat('\n', word1, word2, '') }
+
+    ## Calculate beliefs about next token
+    probs <- infer(agent = opmSLM,
+        predictor = list(word1 = word1, word2 = word2),
+        predictand = 'word3')
+
+    ## Decision: next token
+    ## is the one with max prob.
+    word3 <- names(which.max(probs))
+
+    ## Wrap text if it'll get too long
+    textlength <- textlength + nchar(word3) + 1
+    if(textlength > 50){
+        cat('\n')
+        textlength <- 0
+    }
+
+    ## Print chosen token
+    cat(word3, '')
+
+    ## Use last two tokens for new prediction
+    word1 <- word2
+    word2 <- word3
+}
+```
+
+As you see, the agent started looping at "`THE` `RIGHT`". The text doesn't look natural from this point of view. The set of decisions and of utilities we chose for the agent are not appropriate.
+\
+
+Let's try to define a little more precisely what we mean by "look natural".
+
+- One condition is the absence of text loops like the one above. The text should be to us somewhat *unpredictable*.
+- Also, the frequencies with which 3-grams appear in the output text should reflect those of natural language -- like the frequencies in the texts used to train the agent.
+
+These conditions suggest that we use an "*unpredictable decision*", in the sense discussed in [§@sec-unpred-decisions].
+
+Let's introduce the following decision:
+
+["Unpredictably select and output the next token according to its belief"]{.yellow}.
+
+In the long run, making this decision will produce text that is unpredictable, and also whose 3-gram frequencies reflect those of the training texts, because the agent bases its beliefs on those (though beliefs and frequencies are not exactly equal). Therefore it seems that, in the long run, this decision will lead to the highest utility.
+\
+
+The function `generatetext()` in the file [`textpreparation.R`](https://github.com/pglpm/ADA511/blob/master/code/textpreparation.R) applies the heuristic strategy above and outputs the resulting text. We saw an example output in [§@sec-preview-gentext]. Let's see another example output:
+
+```{r}
+text <- generatetext(
+    agent = opmSLM,
+    prompt = c('ARTICLE', 'x'),
+    stopat = 70,
+    online = FALSE
+)
+
+wrapprint(text, wrapat = 50)
+```
+
+
+
+:::{.callout-important}
+##  
+
+The discussion above is **not a rigorous application of the principle of maximal expected utility**. We did not list properly the decisions, or the outcomes, or the utility values. The reasoning was purely heuristic and intuitive.
+
+For this reason it is quite possible that the strategy adopted is **not** optimal.
+:::
+
+:::{.callout-caution}
+
+- Try to formalize our heuristic reasoning above and to derive the strategy rigorously, from the principle of maximal expected utility. [(This is not an easy task, but why not try?)]{.midgrey}
+
+- Reverse-engineer the function `generatetext()` and verify that it indeed implements the decision discussed above.
+
+- Try generating text with the OPM agent using other prompts. You should notice that sometimes the output text suddenly becomes gibberish, or is gibberish right from the start. It is also possible that gibberish output suddenly becomes more coherent again.
+    
+    Can you explain why these transitions from between sensible and insensible text occur?
+
+- Use other text to train the OPM agent and explore its output. You can prepare texts yourself, or use the ones in the directory [`code/texts`](https://github.com/pglpm/ADA511/tree/master/code/texts). In size order:
+    
+    - [`human_rights.txt`](https://github.com/pglpm/ADA511/blob/master/code/texts/human_rights.txt): [*Universal Declaration of Human Rights*](https://www.un.org/en/about-us/universal-declaration-of-human-rights).
+    - [`EUparliament.txt`](https://github.com/pglpm/ADA511/blob/master/code/texts/EUparliament.txt): sample of [*European Parliament Proceedings*](https://www.statmt.org/europarl/).
+    - [sherlock_holmes.txt](https://github.com/pglpm/ADA511/blob/master/code/texts/sherlock_holmes.txt): [*The Complete Sherlock Holmes*](https://sherlock-holm.es).
+    - [`ABC.txt`](https://github.com/pglpm/ADA511/blob/master/code/texts/ABC.txt): [*Australian Broadcasting Commission*](http://www.abc.net.au/).
+
+:::
+

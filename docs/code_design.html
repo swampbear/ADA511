@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-01">
+<meta name="dcterms.date" content="2025-10-27">
 
-<title>33&nbsp; Code design – ADA511 [0.3]{.small .grey} &lt;br&gt;Data Science and AI prototyping</title>
+<title>31&nbsp; Implementing an OPM – ADA511 0.4</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +67,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./prototype_code.html" rel="next">
-<link href="./dirichlet-mixture.html" rel="prev">
+<link href="./look_behind.html" rel="prev">
 <link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -117,7 +152,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-code-design" class="quarto-section-identifier"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title"><span class="red">Code design</span></span></span></h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-code-design" class="quarto-section-identifier"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"><span class="red">Implementing an OPM</span></span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -134,7 +169,7 @@ window.Quarto = {
       <img src="./ada511logo8_small.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">ADA511 <span class="small grey">0.3</span><br><span class="small grey">2025-09-01</span><br></a><a href="http://creativecommons.org/licenses/by-sa/4.0"><img src="cc_by_sa.png" class="img-fluid" style="width:3em" alt="CC BY-SA 4.0"> <span class="small grey">licence</span></a><br> 
+      <a href="./">ADA511 <span class="small grey">0.4</span><br><span class="small grey">2025-10-27</span><br></a><a href="http://creativecommons.org/licenses/by-sa/4.0"><img src="cc_by_sa.png" class="img-fluid" style="width:3em" alt="CC BY-SA 4.0"> <span class="small grey">licence</span></a><br> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -207,6 +242,12 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rintro1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="lightblue">Working with R, I</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
@@ -291,8 +332,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Rintro2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="lightblue">Working with R, II</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./joint_probability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><span class="green">Joint probability distributions</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rintro3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="lightblue">Working with R, III</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -365,7 +418,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="midgrey"><strong>Machine learning</strong></span></span></a>
+ <span class="menu-text"><span class="green"><strong>Inference III</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -373,20 +426,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./machine_learning_overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to machine learning</span></span></a>
+  <a href="./categorization-inferences.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title"><span class="green">A categorization of inferences</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./neural_networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  <a href="./exchangeable_probabilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"><span class="green">Exchangeable beliefs</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Large Language Models</span></span></a>
+  <a href="./inference_from_freqs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"><span class="green">Inferences from frequencies</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_about_freqs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><span class="green">Inference about frequencies</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dirichlet-mixture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><span class="green">Example of belief over frequencies: the Dirichlet-mixture distribution</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary_formulae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><span class="green">Final inference formulae for exchangeable beliefs</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -394,7 +465,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="green"><strong>Inference III</strong></span></span></a>
+ <span class="menu-text"><span class="red"><strong>A prototype Optimal Predictor Machine</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -402,32 +473,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./beyond-ML.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><span class="green">Beyond machine learning</span></span></span></a>
+  <a href="./look_behind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"><span class="red">A look behind</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exchangeable_probabilities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><span class="green">Exchangeable beliefs</span></span></span></a>
+  <a href="./code_design.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"><span class="red">Implementing an OPM</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inference_from_freqs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><span class="green">Inferences from frequencies</span></span></span></a>
+  <a href="./prototype_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title"><span class="red">Prototype code and workflow</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inference_about_freqs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"><span class="green">Inference about frequencies</span></span></span></a>
+  <a href="./example_opm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title"><span class="red">Example application: adult-income task</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary_formulae.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"><span class="green">Final inference formulae</span></span></span></a>
+  <a href="./slm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title"><span class="red">Example application: “small language model”</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -435,7 +506,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="red"><strong>A prototype Optimal Predictor Machine</strong></span></span></a>
+ <span class="menu-text"><span class="blue"><strong>Decision-making</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -443,26 +514,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dirichlet-mixture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title"><span class="red">The Dirichlet-mixture belief distribution</span></span></span></a>
+  <a href="./utilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"><span class="blue">Utilities</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./code_design.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title"><span class="red">Code design</span></span></span></a>
+  <a href="./making_decisions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title"><span class="blue">Making decisions</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prototype_code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title"><span class="red">Prototype code and workflow</span></span></span></a>
+  <a href="./example_opm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title"><span class="red">The prototype Optimal Predictor Machine makes decisions</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./example_opm1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"><span class="red">Example application: adult-income task</span></span></span></a>
+  <a href="./slm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title"><span class="red">The Optimal Predictor Machine generates text</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -470,7 +541,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="blue"><strong>Decision-making</strong></span></span></a>
+ <span class="menu-text"><span class="midgrey"><strong>Approximations: machine learning</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -478,20 +549,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utilities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title"><span class="blue">Utilities</span></span></span></a>
+  <a href="./machine_learning_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Introduction to machine learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./making_decisions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title"><span class="blue">Making decisions</span></span></span></a>
+  <a href="./decision_trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Decision trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./example_opm2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title"><span class="red">The prototype Optimal Predictor Machine makes decisions</span></span></span></a>
+  <a href="./neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./limitations_ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title"><span class="darkgrey">Decisions: limitations of present-day machine-learning algorithms</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utilities_evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title"><span class="darkgrey">Evaluation practices and utilities</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -499,35 +582,12 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="midgrey"><strong>Further connections with present-day machine-learning</strong></span></span></a>
+ <span class="menu-text"><span class="lightblue"><strong>Conclusion</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./limitations_ML.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title"><span class="midgrey">Decisions: limitations of present-day machine-learning algorithms</span></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./utilities_evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title"><span class="midgrey">Evaluation practices and utilities</span></span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="lightblue"><strong>Conclusion</strong></span></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./whither.html" class="sidebar-item-text sidebar-link">
@@ -564,9 +624,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-code-range" id="toc-sec-code-range" class="nav-link active" data-scroll-target="#sec-code-range"><span class="header-section-number">33.1</span> Range of use of the code</a></li>
-  <li><a href="#sec-code-computations" id="toc-sec-code-computations" class="nav-link" data-scroll-target="#sec-code-computations"><span class="header-section-number">33.2</span> Code design and computations needed</a></li>
-  <li><a href="#sec-code-optim" id="toc-sec-code-optim" class="nav-link" data-scroll-target="#sec-code-optim"><span class="header-section-number">33.3</span> Code optimization</a></li>
+  <li><a href="#sec-characteristics-opm" id="toc-sec-characteristics-opm" class="nav-link active" data-scroll-target="#sec-characteristics-opm"><span class="header-section-number">31.1</span> Desired characteristics of the OPM</a>
+  <ul class="collapse">
+  <li><a href="#example-of-what-kind-of-agent-we-want" id="toc-example-of-what-kind-of-agent-we-want" class="nav-link" data-scroll-target="#example-of-what-kind-of-agent-we-want">Example of what kind of agent we want</a></li>
+  </ul></li>
+  <li><a href="#sec-code-computations" id="toc-sec-code-computations" class="nav-link" data-scroll-target="#sec-code-computations"><span class="header-section-number">31.2</span> Computations needed and computational challenges</a></li>
+  <li><a href="#sec-code-writing" id="toc-sec-code-writing" class="nav-link" data-scroll-target="#sec-code-writing"><span class="header-section-number">31.3</span> The code</a></li>
   </ul>
 </nav>
     </div>
@@ -575,7 +638,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-code-design" class="quarto-section-identifier"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title"><span class="red">Code design</span></span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="sec-code-design" class="quarto-section-identifier"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"><span class="red">Implementing an OPM</span></span></span></h1>
 </div>
 
 
@@ -586,7 +649,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-09-01</p>
+      <p class="date">2025-10-27</p>
     </div>
   </div>
   
@@ -607,84 +670,53 @@ window.Quarto = {
 <div class="hidden">
 
 </div>
-<p>Before starting, let’s agree on some terminology in order not to get confused in the discussion below.</p>
+<p>We now try to build up a real prototype AI agent from basic principles, using the formulae summarized in <a href="summary_formulae.html" class="quarto-xref">ch.&nbsp;&nbsp;<span>29</span></a> and in the previous chapter. By design, this agent is as close to optimal as theoretically possible; so let’s call it an</p>
+<p><img src="optimal_predictor_machine.png" class="img-fluid" style="width:75.0%"></p>
+<p>or <em>OPM</em> for short.</p>
+<p>Before starting, let’s agree on some terminology so as not to get confused in the discussion below.</p>
 <ul>
-<li>We shall call <span class="blue"><em>task</em></span> a repetitive inference problem with a specified set of units and variates. For instance, a task could be the consecutive prediction of the urgency of incoming patients, given their mean of transportation. We assume that the details of the variates, such as their domain, are well specified. Possibly also a set of data from other patients is available, which we call “training data”.</li>
-<li>We shall call <span class="blue"><em>application</em></span> or <span class="blue"><em>instance</em></span> of the task a single inference about a specific new unit, for example a new incoming patient.</li>
+<li>We shall call <span class="blue"><em>task</em></span> a <em>repetitive</em> inference problem with a specified set of units and variates. For instance, a task could be the consecutive prediction of the urgency of several incoming patients, given their mean of transportation.</li>
+<li>We shall call <span class="blue"><em>application</em></span> or <span class="blue"><em>instance</em></span> of the task a <em>single</em> inference about a new unit, for example one new incoming patient.</li>
 </ul>
-<section id="sec-code-range" class="level2 page-columns page-full" data-number="33.1">
-<h2 data-number="33.1" class="anchored" data-anchor-id="sec-code-range"><span class="header-section-number">33.1</span> Range of use of the code</h2>
-<p>The concrete formulae discussed in the previous <a href="dirichlet-mixture.html" class="quarto-xref">chapter&nbsp;&nbsp;<span>32</span></a> can be put into code, for use in different tasks involving only nominal variates. Software of this kind can in principle be written to allow for some or all of the versatility discussed in §§&nbsp;<a href="beyond-ML.html#sec-categ-probtheory" class="quarto-xref"><span>27.3</span></a>–<a href="beyond-ML.html#sec-underlying-distribution" class="quarto-xref"><span>27.4</span></a>, for example the possibility of taking care (in a first-principled way!) of partially missing training data. But the more versatile we make the software, the more memory, processing power, and computation time it will require.</p>
-<p>Roughly speaking, more versatility corresponds to calculations of the joint probability</p>
-<div class="column-page-right">
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-&nbsp;
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span id="eq-main-joint"><span class="math display">\[
-\mathrm{P}(
-\color[RGB]{68,119,170}
-Z_{L}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z_{L}
-\mathbin{\mkern-0.5mu,\mkern-0.5mu}
-\dotsb \mathbin{\mkern-0.5mu,\mkern-0.5mu}
-Z_{1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z_1
-\color[RGB]{0,0,0}
-\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}_{\textrm{d}}
-)
-=
-\frac{1}{k_{\text{ma}}-k_{\text{mi}}+1}
-\sum_{k=k_{\text{mi}}}^{k_{\text{ma}}}
-\frac{
-\prod_{{\color[RGB]{68,119,170}z}} \bigl(\frac{2^{k}}{M} + \#{\color[RGB]{68,119,170}z}- 1\bigr)!
-}{
-\bigl(2^{k} + L -1 \bigr)!
-}
-\cdot
-\frac{
-\bigl(2^{k} -1 \bigr)!
-}{
-{\bigl(\frac{2^{k}}{M} - 1\bigr)!}^M
-}
-\quad
-\tag{33.1}\]</span></span></p>
-</div>
-</div>
-</div>
-<p>for more values of the quantities <span style="display:inline-block;"><span class="math inline">\(\color[RGB]{68,119,170}Z_1, Z_2, \dotsc\)</span>.</span> For instance, if data about unit #4 are missing, then we need to calculate the joint probability above for several (possibly all) values of <span style="display:inline-block;"><span class="math inline">\(\color[RGB]{68,119,170}Z_4\)</span>.</span> If data about two units are missing, then we need to do an analogous calculation for all possible <em>combinations</em> of values; and so on.</p>
-<p>For our prototype, let’s forgo versatility about units used as training data. From now on we abbreviate the set of training data as</p>
+<p><br>
+</p>
+<section id="sec-characteristics-opm" class="level2 page-columns page-full" data-number="31.1">
+<h2 data-number="31.1" class="anchored" data-anchor-id="sec-characteristics-opm"><span class="header-section-number">31.1</span> Desired characteristics of the OPM</h2>
+<p>We design our Optimal Predictor Machine with the following specific characteristics:</p>
+<ul>
+<li><p>It handles variates of <em>nominal</em> type (<a href="quantities_types.html#sec-basic-types" class="quarto-xref">§&nbsp;<span>12.2</span></a>).</p></li>
+<li><p>It handles inferences and decisions about approximately infinite populations, and its beliefs about the population are <em>exchangeable</em> (<a href="exchangeable_probabilities.html" class="quarto-xref">ch.&nbsp;&nbsp;<span>25</span></a>).</p></li>
+<li><p>Its initial beliefs about the population frequencies are represented by a <em>Dirichlet-mixture distribution</em> (<a href="dirichlet-mixture.html" class="quarto-xref">ch.&nbsp;&nbsp;<span>28</span></a>).</p></li>
+<li><p>Before deployment, it learns from a set of <span style="display:inline-block;"><span class="math inline">\(N\)</span></span> units.<br>
+</p></li>
+</ul>
+<section id="example-of-what-kind-of-agent-we-want" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="example-of-what-kind-of-agent-we-want">Example of what kind of agent we want</h3>
+<p>Let’s give an example of what we want our agent to be able to do. Suppose we have a population having three nominal variates&nbsp;&nbsp;<span style="display:inline-block;"><span class="math inline">\(Z = (Y \mathbin{\mkern-0.5mu,\mkern-0.5mu}X \mathbin{\mkern-0.5mu,\mkern-0.5mu}W)\)</span>&nbsp;(keep</span> in mind that <span style="display:inline-block;"><span class="math inline">\(X\)</span>,</span> <span style="display:inline-block;"><span class="math inline">\(Y\)</span>,</span> <span style="display:inline-block;"><span class="math inline">\(W\)</span></span> could each be a joint variate). Abbreviate the set of <span style="display:inline-block;"><span class="math inline">\(N\)</span></span> training data as</p>
+<p><span class="math inline">\(\mathsfit{\color[RGB]{34,136,51}data}\coloneqq
+( Z_{N}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z_{N} \mathbin{\mkern-0.5mu,\mkern-0.5mu}\dotsb \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{2}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z_{2} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z_{1} )\)</span></p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>Recall that <span style="display:inline-block;"><span class="math inline">\({\color[RGB]{68,119,170}Z}\)</span></span> denotes all (nominal) variates of the population</p>
-</div></div><p><span class="math display">\[
-\mathsfit{\color[RGB]{34,136,51}data}\coloneqq
-(\color[RGB]{34,136,51}
-Z_{N}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z_{N} \land \dotsb \land
-Z_{2}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z_2 \land
-Z_{1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z_{1}
-\color[RGB]{0,0,0})
-\]</span></p>
-<p>where <span style="display:inline-block;"><span class="math inline">\(\color[RGB]{68,119,170}z_N, \dotsc, z_2, z_1\)</span></span> are specific values, stored in some training dataset. No values are missing.</p>
-<p>Since the training <span style="display:inline-block;"><span class="math inline">\(\mathsfit{\color[RGB]{34,136,51}data}\)</span></span> are given and fixed in a task, we omit the suffix <span style="display:inline-block;">“<span class="math inline">\({}_{N+1}\)</span>”</span> that we have often used to indicate a “new” unit. So <span style="display:inline-block;">“<span class="math inline">\(\color[RGB]{68,119,170}Z\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z\)</span>”</span> simply refers to the variate <span style="display:inline-block;"><span class="math inline">\({\color[RGB]{68,119,170}Z}\)</span></span> in a new application of the task.</p>
-<p>We allow for full versatility in every new instance. This means that we can accommodate, <em>on the spot at each new instance</em>, what the predictand variates are, and what the predictor variates (if any) are. For example, if the population has three variates <span style="display:inline-block;"><span class="math inline">\({\color[RGB]{68,119,170}Z}=({\color[RGB]{68,119,170}A}\mathbin{\mkern-0.5mu,\mkern-0.5mu}{\color[RGB]{68,119,170}B}\mathbin{\mkern-0.5mu,\mkern-0.5mu}{\color[RGB]{68,119,170}C})\)</span>,</span> our prototype can calculate, at each new application, inferences such as</p>
+<p>Recall that <span style="display:inline-block;"><span class="math inline">\(Z\)</span></span> denotes all (nominal) variates of the population</p>
+</div></div><p>where <span style="display:inline-block;"><span class="math inline">\(z_N, \dotsc, z_2, z_1\)</span></span> are specific values, stored in some training dataset. To simplify things, we assume that no values are missing.</p>
+<p>We want an agent that can draw inferences like the following ones, as often as required:</p>
 <ul>
-<li><p><span class="math inline">\(P({\color[RGB]{68,119,170}B}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: any one predictand variate, no predictors</p></li>
-<li><p><span class="math inline">\(P({\color[RGB]{68,119,170}A}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}{\color[RGB]{68,119,170}C}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: any two predictand variates, no predictors</p></li>
-<li><p><span class="math inline">\(P({\color[RGB]{68,119,170}A}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}{\color[RGB]{68,119,170}B}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}{\color[RGB]{68,119,170}C}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: all three variates</p></li>
-<li><p><span class="math inline">\(P({\color[RGB]{68,119,170}B}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}{\color[RGB]{68,119,170}A}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: any one predictand variate, any other one predictor</p></li>
-<li><p><span class="math inline">\(P({\color[RGB]{68,119,170}B}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{} {\color[RGB]{68,119,170}A}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}{\color[RGB]{68,119,170}C}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: any one predictand variate, any other two predictors</p></li>
-<li><p><span class="math inline">\(P({\color[RGB]{68,119,170}A}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}{\color[RGB]{68,119,170}C}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}{\color[RGB]{68,119,170}B}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: any two predictand variates, any other one predictor</p></li>
+<li><p><span class="math inline">\(P(X\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>,&nbsp; <span style="display:inline-block;"><span class="math inline">\(P(Y\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>,&nbsp;etc.:</span> inference about a predictand variate, without knowledge of any predictors.</p></li>
+<li><p><span class="math inline">\(P(Y\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}W\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: same but for any two predictand variates.</p></li>
+<li><p><span class="math inline">\(P(Y\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}X\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}W\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: same but for all three variates.</p></li>
+<li><p><span class="math inline">\(P(X\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}Y\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: inference about any one predictand variate, given information about one predictor variate.</p></li>
+<li><p><span class="math inline">\(P(X\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{} Y\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}W\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: same, but given information about any pair of predictors.</p></li>
+<li><p><span class="math inline">\(P(Y\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}W\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso\nonscript\:\vert\nonscript\:\mathopen{}X\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>: inference about any two predictand variates, given information about one predictor.</p></li>
 </ul>
+<p>Note that <em>we are not fixing beforehand which variates are predictands and which are predictors</em>. Once the agent has learnt from the training data, we want to be able to change <em>on the fly, at each new application</em>, what the predictands are, and what the predictors are (if any).</p>
+<p>Pause for a second and <em>ponder about the flexibility that we are requesting from our prototype agent!</em> Consider that virtually all present-day machine-learning algorithms only work one way: a machine-learning algorithm designed to guess a label from some features cannot guess features from a label. Will we really manage to build an agent with the amazing versatility illustrated above?</p>
 </section>
-<section id="sec-code-computations" class="level2 page-columns page-full" data-number="33.2">
-<h2 data-number="33.2" class="anchored" data-anchor-id="sec-code-computations"><span class="header-section-number">33.2</span> Code design and computations needed</h2>
-<p>To enjoy the versatility discussed above, the code needs to compute</p>
-<div class="column-page-right">
+</section>
+<section id="sec-code-computations" class="level2 page-columns page-full" data-number="31.2">
+<h2 data-number="31.2" class="anchored" data-anchor-id="sec-code-computations"><span class="header-section-number">31.2</span> Computations needed and computational challenges</h2>
+<p>The examples above of requested inferences show that the OPM agent must essentially use formulae&nbsp;(<a href="dirichlet-mixture.html#eq-dmagent-y" class="quarto-xref"><span>28.3</span></a>)–(<a href="dirichlet-mixture.html#eq-dmagent-aux" class="quarto-xref"><span>28.5</span></a>) from <a href="dirichlet-mixture.html#sec-formulae-dirmix" class="quarto-xref">§&nbsp;<span>28.3</span></a>, which we repeat here:</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -695,179 +727,107 @@ Z_{1}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span id="eq-objectP"><span class="math display">\[
-\mathrm{P}(
-\color[RGB]{68,119,170}Z \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z
-\mathbin{\mkern-0.5mu,\mkern-0.5mu}
-\color[RGB]{34,136,51}\mathsfit{\color[RGB]{34,136,51}data}
-\color[RGB]{0,0,0}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}_{\textrm{d}})
+<p><span class="math inline">\(\mathrm{P}(Y\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}y \nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{\color[RGB]{34,136,51}data}, \mathsfit{I}_{\textrm{d}})
 =
-\frac{1}{k_{\text{ma}}-k_{\text{mi}}+1}
-\sum_{k=k_{\text{mi}}}^{k_{\text{ma}}}
-\Biggl(\frac{2^{k}}{M} + {\color[RGB]{34,136,51}\#}{\color[RGB]{68,119,170}z}\Biggr)
-\cdot
 \frac{
-\prod_{{\color[RGB]{68,119,170}z}} \bigl(\frac{2^{k}}{M} + {\color[RGB]{34,136,51}\# z} - 1\bigr)!
+\sum_{k= k_{\text{mi}}}^{k_{\text{ma}}}
+\Bigl(\tfrac{2^k}{M_Y} + \#y\Bigr)
+\cdot \operatorname{aux}(k)
 }{
-\bigl(2^{k} + N \bigr)!
+\sum_{y}\sum_{k= k_{\text{mi}}}^{k_{\text{ma}}}
+\Bigl(\tfrac{2^k}{M_Y} + \#y\Bigr)
+\cdot \operatorname{aux}(k)
+}\)</span>&nbsp;&nbsp;&nbsp;(<a href="dirichlet-mixture.html#eq-dmagent-y" class="quarto-xref"><span>28.3</span></a>)</p>
+<p><span class="math inline">\(\mathrm{P}(Y\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}y \nonscript\:\vert\nonscript\:\mathopen{} X\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}x \mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}, \mathsfit{I}_{\textrm{d}})
+=
+\frac{
+\sum_{k= k_{\text{mi}}}^{k_{\text{ma}}}
+\Bigl(\tfrac{2^k}{M_Y \cdot M_X} + \#(y,x)\Bigr)
+\cdot \operatorname{aux}(k)
+}{
+\sum_{y}\sum_{k= k_{\text{mi}}}^{k_{\text{ma}}}
+\Bigl(\tfrac{2^k}{M_Y \cdot M_X} + \#(y,x)\Bigr)
+\cdot \operatorname{aux}(k)
+}\)</span>&nbsp;&nbsp;&nbsp;(<a href="dirichlet-mixture.html#eq-dmagent-yx" class="quarto-xref"><span>28.4</span></a>)</p>
+<p>with&nbsp;&nbsp;<span style="display:inline-block;"><span class="math inline">\(\operatorname{aux}(k)
+\coloneqq
+\frac{
+\prod_{x,y,w} \Bigl(\frac{2^{k}}{M} + \#(x,y,w) - 1\Bigr)!
+}{
+\bigl(2^{k} + N\bigr)!
 }
 \cdot
 \frac{
 \bigl(2^{k} -1 \bigr)!
 }{
-{\bigl(\frac{2^{k}}{M} - 1\bigr)!}^M
-}
-\tag{33.2}\]</span></span></p>
-<p>for all possible values <span style="display:inline-block;"><span class="math inline">\({\color[RGB]{68,119,170}z}\)</span>,</span> where <span style="display:inline-block;"><span class="math inline">\({\color[RGB]{34,136,51}\#}{\color[RGB]{68,119,170}z}\)</span></span> is the number of times value <span style="display:inline-block;"><span class="math inline">\({\color[RGB]{68,119,170}z}\)</span></span> appears <strong>in the training <span class="green">data</span></strong>, and <span style="display:inline-block;"><span class="math inline">\(N = \sum_{\color[RGB]{34,136,51}z}{\color[RGB]{34,136,51}\# z}\)</span></span> is the number of training data</p>
+{\Bigl(\frac{2^{k}}{M} - 1\Bigr)!}^M
+}\)</span>&nbsp;&nbsp;&nbsp;(</span><a href="dirichlet-mixture.html#eq-dmagent-aux" class="quarto-xref"><span>28.5</span></a>)</p>
 </div>
 </div>
-</div>
-<p>This formula is just a rewriting of formula (<a href="#eq-main-joint" class="quarto-xref"><span>33.1</span></a>) for <span style="display:inline-block;"><span class="math inline">\(L=N+1\)</span>,</span> simplified by using the property of the factorial</p>
-<p><span class="math display">\[(a+1)! = (a+1) \cdot a!\]</span></p>
-<p>But the computation of formula (<a href="#eq-objectP" class="quarto-xref"><span>33.2</span></a>) (for all values of <span style="display:inline-block;"><span class="math inline">\({\color[RGB]{68,119,170}z}\)</span>)</span> must be done <em>only once</em> for a given task. For a new application we only need to combine these already-computed probabilities via sums and fractions. For example, in the three-variate case above, if in a new application we need to forecast <span style="display:inline-block;"><span class="math inline">\(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}a\)</span></span> given <span style="display:inline-block;"><span class="math inline">\(\color[RGB]{204,187,68}C\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}c\)</span>,</span> then we calculate</p>
-<div class="column-page-inset-right">
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-&nbsp;
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>(example with <span style="display:inline-block;"><span class="math inline">\(Z \coloneqq({\color[RGB]{238,102,119}A}, {\color[RGB]{68,119,170}B}, {\color[RGB]{204,187,68}C})\)</span>)</span></p>
-<p><span id="eq-forecast"><span class="math display">\[
-P(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}a \color[RGB]{0,0,0}\nonscript\:\vert\nonscript\:\mathopen{}\color[RGB]{204,187,68}C\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}c \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})
-=
-\frac{
-\sum_{\color[RGB]{68,119,170}b}
-P(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}a \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{68,119,170}B\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}b \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{204,187,68}C\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}c \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}_{\textrm{d}})
-}{
-\sum_{\color[RGB]{170,51,119}\alpha}\sum_{\color[RGB]{68,119,170}b}
-P(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{170,51,119}\alpha} \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{68,119,170}B\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}b \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{204,187,68}C\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}c \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}_{\textrm{d}})
-}
-\quad
-\tag{33.3}\]</span></span></p>
-</div>
-</div>
-</div>
-<p>where all <span style="display:inline-block;"><span class="math inline">\(P(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{68,119,170}B\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{204,187,68}C\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\dotso \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}_{\textrm{d}})\)</span></span> are already computed.</p>
-<p><br>
+<p>The values of <span style="display:inline-block;"><span class="math inline">\(\operatorname{aux}(k)\)</span></span> can be calculated just once, when the OPM agent is built, and stored. Subsequently the agent will draw inferences by using (<a href="dirichlet-mixture.html#eq-dmagent-y" class="quarto-xref"><span>28.3</span></a>) or (<a href="dirichlet-mixture.html#eq-dmagent-yx" class="quarto-xref"><span>28.4</span></a>) as needed. To use those formulae, the agent needs to store the counts <span style="display:inline-block;"><span class="math inline">\(\#(x,y,w,\dotsc)\)</span>,</span> which it found in the training data, for all combinations of values <span style="display:inline-block;"><span class="math inline">\(x,y,w,\dotsc\)</span>.</span><br>
 </p>
-<p>Our prototype software must therefore include two main functions, which we can call as follows:</p>
-<ul>
-<li><dl>
-<dt><code>buildagent()</code> (<a href="https://github.com/pglpm/ADA511/blob/master/code/OPM-nominal/buildagent.R">see code</a>)</dt>
+<p>This kind of storage and computation could be implemented in a straightforward way if we had unlimited storage and computation precision. But in a real implementation we must face several difficulties. Here are the main difficulties and their solutions:</p>
+<dl>
+<dt><span class="red"><i class="fa-solid fa-circle-exclamation" aria-label="circle-exclamation"></i> Finite precision</span></dt>
 <dd>
-computes <span class="math inline">\(\color[RGB]{34,136,51}\#{\color[RGB]{68,119,170}z}\)</span> for all values <span class="math inline">\({\color[RGB]{68,119,170}z}\)</span>, as well as the multiplicative factors
+Owing to finite precision, the operations in the formulae may easily lead to overflow or underflow: large numbers are treated as <code>infinity</code>, and small non-zero numbers as <code>0</code>. For instance this is what happens if we directly compute something like <span class="math inline">\((2^{10})! / (2^{10})!\)</span>, obviously equal to <span class="math inline">\(1\)</span>:
 </dd>
 </dl>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">10</span>) <span class="sc">/</span> <span class="fu">factorial</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NaN</code></pre>
+</div>
+</div>
+<p>One way to bypass this problem is by rewriting the formulae in ways that are mathematically equivalent but less prone to over- and under-flow. For example we can use identities like</p>
 <p><span class="math display">\[
-  \frac{
-  \bigl(2^{k} -1 \bigr)!
-}{
-\bigl(2^{k} + N \bigr)!
-\cdot
-{\bigl(\frac{2^{k}}{M} - 1\bigr)!}^M
-}
+x / y = \exp\bigl(\ln x - \ln y\bigr)\ ,\quad x, y &gt; 0 \ .
 \]</span></p>
-<p>for all <span style="display:inline-block;"><span class="math inline">\(k\)</span>,</span> in (<a href="#eq-objectP" class="quarto-xref"><span>33.2</span></a>). This computation is done once and for all in a given task, using the training <span style="display:inline-block;"><span class="math inline">\(\mathsfit{\color[RGB]{34,136,51}data}\)</span></span> and the metadata <span style="display:inline-block;"><span class="math inline">\(\mathsfit{I}_{\textrm{d}}\)</span></span> provided. The result can be stored in an array or similar object, which we shall call an <code>agent</code>-class object.</p></li>
-<li><dl>
-<dt><code>infer()</code> (<a href="https://github.com/pglpm/ADA511/blob/master/code/OPM-nominal/infer.R">see code</a>)</dt>
-<dd>
-computes probabilities such as (<a href="#eq-forecast" class="quarto-xref"><span>33.3</span></a>) at each new instance, using the stored <code>agent</code>-class object as well as the predictor variates and values provided with that instance, and the predictand variates requested at that instance.
-</dd>
-</dl></li>
-</ul>
-<p><br>
-</p>
-<p>We shall also include four additional functions for convenience:</p>
-<ul>
-<li><dl>
-<dt><code>guessmetadata()</code></dt>
-<dd>
-builds a preliminary metadata file, encoding the background information <span class="math inline">\(\mathsfit{I}_{\textrm{d}}\)</span>, from some dataset.
-</dd>
-</dl></li>
-<li><dl>
-<dt><code>decide()</code></dt>
-<dd>
-makes a decision according to expected-utility maximization (<a href="basic_decisions.html" class="quarto-xref">chapter&nbsp;&nbsp;<span>3</span></a>), using probabilities calculated with <code>infer()</code> and utilities.
-</dd>
-</dl></li>
-<li><dl>
-<dt><code>rF()</code></dt>
-<dd>
-draws one or more possible full-population frequency distribution <span class="math inline">\(\boldsymbol{f}\)</span>, according to the updated degree of belief <span class="math inline">\(\mathrm{p}(F\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\boldsymbol{f}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span>
-</dd>
-</dl></li>
-<li><dl>
-<dt><code>plotFsamples1D()</code></dt>
-<dd>
-plots, as a generalized scatter plot, the possible full-population marginal frequency distributions for a single (not joint) predictand variate. If required it also also the final probability obtained with <code>infer()</code>.
-</dd>
-</dl></li>
-<li><dl>
-<dt><code>mutualinfo()</code></dt>
-<dd>
-calculates the mutual information (<a href="information.html#sec-entropy-mutualinfo" class="quarto-xref">§&nbsp;<span>18.5</span></a>) between any two sets of variates.
-</dd>
-</dl></li>
-</ul>
-<div class="column-body-outset-right">
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise
+<p>Now indeed it works; note that <code>lfactorial()</code> is <code>log(factorial())</code> in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>( <span class="fu">lfactorial</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">10</span>) <span class="sc">-</span> <span class="fu">lfactorial</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">10</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Using the <code>and</code>-rule, prove (pay attention to the conditional <span style="display:inline-block;">“<span class="math inline">\(\nonscript\:\vert\nonscript\:\mathopen{}\)</span>”</span> bar):</p>
+<p>Another useful identity that avoids over- and under-flow, if <span style="display:inline-block;"><span class="math inline">\(\pmb{x}\)</span></span> is a vector of positive numbers, is the following:</p>
 <p><span class="math display">\[
-\frac{
-\sum_{\color[RGB]{68,119,170}b}
-P(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}a \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{68,119,170}B\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}b \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{204,187,68}C\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}c \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}_{\textrm{d}})
-}{
-\sum_{\color[RGB]{170,51,119}\alpha}\sum_{\color[RGB]{68,119,170}b}
-P(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{170,51,119}\alpha} \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{68,119,170}B\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}b \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{204,187,68}C\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}c \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{\color[RGB]{34,136,51}data}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}_{\textrm{d}})
-}
+\frac{\pmb{x}}{\operatorname{\texttt{sum}}(\pmb{x})}
 =
 \frac{
-\sum_{\color[RGB]{68,119,170}b}
-P(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}a \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{68,119,170}B\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}b \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{204,187,68}C\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}c \color[RGB]{0,0,0}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})
-}{
-\sum_{\color[RGB]{170,51,119}\alpha}\sum_{\color[RGB]{68,119,170}b}
-P(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{170,51,119}\alpha} \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{68,119,170}B\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}b \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{204,187,68}C\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}c \color[RGB]{0,0,0}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})
-}
+\operatorname{\texttt{exp}}\bigl(\operatorname{\texttt{log}}(\pmb{x})
+- \operatorname{\texttt{max}}(\operatorname{\texttt{log}}(\pmb{x}))\bigr)
+}{\operatorname{\texttt{sum}}\bigl(
+\operatorname{\texttt{exp}}\bigl(\operatorname{\texttt{log}}(\pmb{x})
+- \operatorname{\texttt{max}}(\operatorname{\texttt{log}}(\pmb{x}))\bigr)
+\bigr)}
 \]</span></p>
 <p><br>
 </p>
-<p>This exercise shows that instead of</p>
-<p><span class="math display">\[\mathrm{P}(\color[RGB]{68,119,170}Z \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{34,136,51}\mathsfit{\color[RGB]{34,136,51}data}\color[RGB]{0,0,0}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}_{\textrm{d}})\]</span></p>
-<p>we could calculate</p>
-<p><span class="math display">\[
-\mathrm{P}(
-\color[RGB]{68,119,170}Z \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z
-\color[RGB]{0,0,0}\nonscript\:\vert\nonscript\:\mathopen{}
-\color[RGB]{34,136,51}\mathsfit{\color[RGB]{34,136,51}data}
-\color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})
-\]</span></p>
-<p>once for all possible values <span style="display:inline-block;"><span class="math inline">\({\color[RGB]{68,119,170}z}\)</span>,</span> and use that. Mathematically and logically the two ways are completely equivalent. Numerically they can be different as regards precision or possible overflow errors. Using <span style="display:inline-block;"><span class="math inline">\(\mathrm{P}( \color[RGB]{68,119,170}Z \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z \color[RGB]{0,0,0}\nonscript\:\vert\nonscript\:\mathopen{} \color[RGB]{34,136,51}\mathsfit{\color[RGB]{34,136,51}data}\color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span></span> would be convenient if our basic formula&nbsp;(<a href="#eq-main-joint" class="quarto-xref"><span>33.1</span></a>) didn’t contain the sum <span style="display:inline-block;"><span class="math inline">\(\sum_k\)</span></span> over the <span style="display:inline-block;"><span class="math inline">\(k\)</span></span> index. Our code shall instead use <span style="display:inline-block;"><span class="math inline">\(\mathrm{P}(\color[RGB]{68,119,170}Z \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}z \color[RGB]{0,0,0}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\color[RGB]{34,136,51}\mathsfit{\color[RGB]{34,136,51}data}\color[RGB]{0,0,0}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}_{\textrm{d}})\)</span></span> because it leads to slightly more precision and speed in some tasks.</p>
+<dl>
+<dt><span class="red"><i class="fa-solid fa-circle-exclamation" aria-label="circle-exclamation"></i> Storage</span></dt>
+<dd>
+With many variates and large domains, we may run out of memory in storing all possible counts <span class="math inline">\(\#(x,y,w,\dotsc)\)</span>. For instance if we have four variates with 20 possible values each, we would need to store <span class="math inline">\(4^{20}\)</span> integers, which would take more than 4 000 GB:
+</dd>
+</dl>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>( x <span class="ot">&lt;-</span> <span class="fu">integer</span>(<span class="at">length =</span> <span class="dv">4</span><span class="sc">^</span><span class="dv">20</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error : cannot allocate vector of size 4096.0 Gb</code></pre>
 </div>
 </div>
-</div>
-</section>
-<section id="sec-code-optim" class="level2 page-columns page-full" data-number="33.3">
-<h2 data-number="33.3" class="anchored" data-anchor-id="sec-code-optim"><span class="header-section-number">33.3</span> Code optimization</h2>
-<p>The formulae of <a href="dirichlet-mixture.html" class="quarto-xref">chapter&nbsp;&nbsp;<span>32</span></a>, if used as-written, easily lead to two kinds of computation problems. First, they generate overflows and <code>NaN</code>, owing to factorials and their divisions. Second, the products over variates may involve so many terms as to require a long computation time. In the end we would have to wait a long time just to receive a string of <code>NaN</code>s.</p>
-<p>The first problem is dealt with by rewriting the formulae in terms of logarithms, and renormalizing numerators and denominators of fractions. See for example the lines defining <code>auxalphas</code> in the <a href="https://github.com/pglpm/ADA511/blob/master/code/OPM-nominal/buildagent.R"><code>buildagent()</code></a> function, and the line that redefines <code>counts</code> one last time in the <a href="https://github.com/pglpm/ADA511/blob/master/code/OPM-nominal/infer.R"><code>infer()</code></a> function.</p>
-<p>The second problem is dealt with by reorganizing the sums as multiples of identical summands; see the lines working with <code>freqscounts</code> in the <a href="https://github.com/pglpm/ADA511/blob/master/code/OPM-nominal/buildagent.R"><code>buildagent()</code></a> function.</p>
-
-
+<p>We can bypass this problem again by using smart mathematical manipulations. In the case of formulae&nbsp;(<a href="dirichlet-mixture.html#eq-dmagent-y" class="quarto-xref"><span>28.3</span></a>)–(<a href="dirichlet-mixture.html#eq-dmagent-aux" class="quarto-xref"><span>28.5</span></a>), the product over all possible values <span style="display:inline-block;"><span class="math inline">\((x,y,w,\dotsc)\)</span></span> can be rewritten in one over all different <em>values of the counts</em>, which usually has much fewer terms. For example, if we have <span style="display:inline-block;"><span class="math inline">\(N=10000\)</span></span> datapoints, and <span style="display:inline-block;"><span class="math inline">\(4^{20} -1\)</span></span> counts are equal to <span style="display:inline-block;"><span class="math inline">\(9000\)</span>,</span> while one count is equal to <span style="display:inline-block;"><span class="math inline">\(1000\)</span>,</span> then we only need to store these <em>four</em> numbers rather than <span style="display:inline-block;"><span class="math inline">\(4^{20}\)</span></span> numbers!</p>
+<p><br>
+</p>
+<dl>
+<dt><span class="red"><i class="fa-solid fa-circle-exclamation" aria-label="circle-exclamation"></i> Speed</span></dt>
+<dd>
+The formulae that the agent uses may involve sums over many terms, or repeated computations for many different variate values. Computation speed may therefore become an issue. There are two kinds of solutions to this problem. The first is, again, to use mathematical identities to rewrite formulae in ways that require fewer computations. The second is to exploit computation features of the programming language used to code the agent, such as vectorization or parallel computing. In our case we shall use some R functions that performs computations in a vectorized way, that is, using underlying fast C or C++ implementations.
+</dd>
+</dl>
+<p><br>
+</p>
+<p>You see that mathematical “tricks” become very important when we must implement formulae with finite precision and limited memory. Unfortunately getting acquainted with such tricks requires a separate course.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
@@ -883,7 +843,96 @@ P(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\sma
 <p>§6.1 in <a href="references.html"><em>Numerical Recipes</em></a></p>
 </div>
 </div>
-</div></div></section>
+</div></div><p>Note that <strong>the solutions just discussed are <em>not</em> approximations</strong>. Even if we use different mathematical formulae, they are still equivalent to the original ones. The internal logic of our OPM agent is therefore still fully correct. In other situations the mathematical or computational solutions above may not be enough, and then we may need to resort to approximations, as it often happens with machine-learning algorithms.</p>
+<div id="cau-unique1" class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise&nbsp;31.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try to prove some of the mathematical identities above.</p>
+</div>
+</div>
+</section>
+<section id="sec-code-writing" class="level2" data-number="31.3">
+<h2 data-number="31.3" class="anchored" data-anchor-id="sec-code-writing"><span class="header-section-number">31.3</span> The code</h2>
+<p>We implement the OPM agent and its inferences through three main functions. These and other helper functions are defined in the script <a href="https://github.com/pglpm/ADA511/blob/code/OPM_nominal.R"><code>OPM_nominal.R</code></a>:</p>
+<ul>
+<li><dl>
+<dt><code>buildagent()</code></dt>
+<dd>
+creates an “agent” object that stores the built-in information and the information learned from the training data. The built-in information consists in the choices of <span class="math inline">\(k_{\text{mi}}\)</span> and <span class="math inline">\(k_{\text{ma}}\)</span> parameters, the <span class="math inline">\(\operatorname{aux}(k)\)</span> parameters, and the list of variates and of their domains – the agent knows what are the possible values before seeing any data. The learned information consists in the set of counts <span class="math inline">\(\#(x,y,\dotsc)\)</span> for all joint values of the variates.
+</dd>
+</dl>
+<p>We can used this function to build several agents, which differ in their background information or in the data they have learned.</p>
+<p>We write this function with an option <code>savememory</code> for storing the learned information in a memory-efficient way, if needed.</p></li>
+<li><dl>
+<dt><code>infer()</code></dt>
+<dd>
+asks an agent to draw an inference for a new unit, specifying the desired predictands and the known predictors for the new unit, if any are available. It returns the agent’s degrees of belief about the predictands, using formulae&nbsp;(<a href="dirichlet-mixture.html#eq-dmagent-y" class="quarto-xref"><span>28.3</span></a>)–(<a href="dirichlet-mixture.html#eq-dmagent-aux" class="quarto-xref"><span>28.5</span></a>).
+</dd>
+</dl>
+<p>The formulae must be implemented in slightly different ways, depending on whether the learned information is stored in a memory-efficient way. For this reason we actually have two implementations of this function, called <code>infer.agent()</code> and <code>infer.agentcompressed()</code>.</p>
+<p>This function can be used as often as we please, and with any agents we please.</p></li>
+<li><dl>
+<dt><code>decide()</code></dt>
+<dd>
+asks an agent to make a decision, specifying the list of possible decisions, the predictands and their probabilities, and the utilities for the different decisions and outcomes. We shall discuss this function more in detail in <a href="example_opm2.html" class="quarto-xref">ch.&nbsp;&nbsp;<span>37</span></a>.
+</dd>
+</dl></li>
+</ul>
+<div id="cau-unique2" class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise&nbsp;31.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open the script <a href="https://github.com/pglpm/ADA511/blob/code/OPM_nominal.R"><code>OPM_nominal.R</code></a> and locate the functions <code>buildagent()</code> and <code>infer.agent()</code>. In each, identify the lines of code that implement the various calculations discussed above. Note that <code>alpha</code> stands for <span style="display:inline-block;"><span class="math inline">\(2^k\)</span>,</span> and <code>counts</code> stands for the array or list of counts <span style="display:inline-block;"><span class="math inline">\(\#(y,x,\dotsc)\)</span>.</span></p>
+</div>
+</div>
+<p><br>
+</p>
+<p>Besides the three main functions above, we can write other functions that help us handling the inference task and calculate other quantities of interest:</p>
+<ul>
+<li><dl>
+<dt><code>guessmetadata()</code></dt>
+<dd>
+takes a dataset and builds a preliminary metadata file, encoding the information about variates and domain <em>guessed</em> from the dataset. Typically we have to correct this preliminary file to include values that may be missing from the learning data.
+</dd>
+</dl></li>
+<li><dl>
+<dt><code>rF()</code></dt>
+<dd>
+draws one or more possible full-population frequency distribution <span class="math inline">\(\boldsymbol{f}\)</span>, according to an agent’s degree of belief <span class="math inline">\(\mathrm{p}(F\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\boldsymbol{f}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{\color[RGB]{34,136,51}data}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}_{\textrm{d}})\)</span> updated after learning the data.
+</dd>
+</dl></li>
+<li><dl>
+<dt><code>plotFsamples1D()</code></dt>
+<dd>
+plots, as a generalized scatter plot, the possible full-population marginal frequency distributions for a single (not joint) predictand variate. If required it also plots the final probability distribution obtained with <code>infer()</code>.
+</dd>
+</dl></li>
+<li><dl>
+<dt><code>mutualinfo()</code></dt>
+<dd>
+asks an agent to calculate the mutual information (<a href="information.html#sec-entropy-mutualinfo" class="quarto-xref">§&nbsp;<span>18.5</span></a>) between any two sets of variates.
+</dd>
+</dl></li>
+</ul>
+<p><br>
+</p>
+<p>In the next chapter we give some more documentation on these functions and on how to use them, and in <a href="example_opm1.html" class="quarto-xref">ch.&nbsp;&nbsp;<span>33</span></a> we use them in a concrete task.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1292,13 +1341,13 @@ P(\color[RGB]{238,102,119}A\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\sma
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./dirichlet-mixture.html" class="pagination-link" aria-label="[The Dirichlet-mixture belief distribution]{.red}">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title"><span class="red">The Dirichlet-mixture belief distribution</span></span></span>
+      <a href="./look_behind.html" class="pagination-link" aria-label="[A look behind]{.red}">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"><span class="red">A look behind</span></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./prototype_code.html" class="pagination-link" aria-label="[Prototype code and workflow]{.red}">
-        <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title"><span class="red">Prototype code and workflow</span></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title"><span class="red">Prototype code and workflow</span></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

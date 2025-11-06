@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-01">
+<meta name="dcterms.date" content="2025-11-01">
 
-<title>30&nbsp; Inference about frequencies – ADA511 [0.3]{.small .grey} &lt;br&gt;Data Science and AI prototyping</title>
+<title>27&nbsp; Inference about frequencies – ADA511 0.4</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary_formulae.html" rel="next">
+<link href="./dirichlet-mixture.html" rel="next">
 <link href="./inference_from_freqs.html" rel="prev">
 <link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -117,7 +117,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-inference-exch" class="quarto-section-identifier"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"><span class="green">Inference about frequencies</span></span></span></h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-inference-exch" class="quarto-section-identifier"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><span class="green">Inference about frequencies</span></span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -134,7 +134,7 @@ window.Quarto = {
       <img src="./ada511logo8_small.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">ADA511 <span class="small grey">0.3</span><br><span class="small grey">2025-09-01</span><br></a><a href="http://creativecommons.org/licenses/by-sa/4.0"><img src="cc_by_sa.png" class="img-fluid" style="width:3em" alt="CC BY-SA 4.0"> <span class="small grey">licence</span></a><br> 
+      <a href="./">ADA511 <span class="small grey">0.4</span><br><span class="small grey">2025-11-01</span><br></a><a href="http://creativecommons.org/licenses/by-sa/4.0"><img src="cc_by_sa.png" class="img-fluid" style="width:3em" alt="CC BY-SA 4.0"> <span class="small grey">licence</span></a><br> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -207,6 +207,12 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rintro1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="lightblue">Working with R, I</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
@@ -291,8 +297,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Rintro2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="lightblue">Working with R, II</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./joint_probability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><span class="green">Joint probability distributions</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rintro3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="lightblue">Working with R, III</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -365,7 +383,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="midgrey"><strong>Machine learning</strong></span></span></a>
+ <span class="menu-text"><span class="green"><strong>Inference III</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -373,20 +391,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./machine_learning_overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to machine learning</span></span></a>
+  <a href="./categorization-inferences.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title"><span class="green">A categorization of inferences</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./neural_networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  <a href="./exchangeable_probabilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"><span class="green">Exchangeable beliefs</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Large Language Models</span></span></a>
+  <a href="./inference_from_freqs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"><span class="green">Inferences from frequencies</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_about_freqs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><span class="green">Inference about frequencies</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dirichlet-mixture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><span class="green">Example of belief over frequencies: the Dirichlet-mixture distribution</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary_formulae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><span class="green">Final inference formulae for exchangeable beliefs</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -394,7 +430,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="green"><strong>Inference III</strong></span></span></a>
+ <span class="menu-text"><span class="red"><strong>A prototype Optimal Predictor Machine</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -402,32 +438,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./beyond-ML.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><span class="green">Beyond machine learning</span></span></span></a>
+  <a href="./look_behind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"><span class="red">A look behind</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exchangeable_probabilities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><span class="green">Exchangeable beliefs</span></span></span></a>
+  <a href="./code_design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"><span class="red">Implementing an OPM</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inference_from_freqs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><span class="green">Inferences from frequencies</span></span></span></a>
+  <a href="./prototype_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title"><span class="red">Prototype code and workflow</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inference_about_freqs.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"><span class="green">Inference about frequencies</span></span></span></a>
+  <a href="./example_opm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title"><span class="red">Example application: adult-income task</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary_formulae.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"><span class="green">Final inference formulae</span></span></span></a>
+  <a href="./slm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title"><span class="red">Example application: “small language model”</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -435,7 +471,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="red"><strong>A prototype Optimal Predictor Machine</strong></span></span></a>
+ <span class="menu-text"><span class="blue"><strong>Decision-making</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -443,26 +479,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dirichlet-mixture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title"><span class="red">The Dirichlet-mixture belief distribution</span></span></span></a>
+  <a href="./utilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"><span class="blue">Utilities</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./code_design.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title"><span class="red">Code design</span></span></span></a>
+  <a href="./making_decisions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title"><span class="blue">Making decisions</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prototype_code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title"><span class="red">Prototype code and workflow</span></span></span></a>
+  <a href="./example_opm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title"><span class="red">The prototype Optimal Predictor Machine makes decisions</span></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./example_opm1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"><span class="red">Example application: adult-income task</span></span></span></a>
+  <a href="./slm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title"><span class="red">The Optimal Predictor Machine generates text</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -470,7 +506,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="blue"><strong>Decision-making</strong></span></span></a>
+ <span class="menu-text"><span class="midgrey"><strong>Approximations: machine learning</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -478,20 +514,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utilities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title"><span class="blue">Utilities</span></span></span></a>
+  <a href="./machine_learning_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Introduction to machine learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./making_decisions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title"><span class="blue">Making decisions</span></span></span></a>
+  <a href="./decision_trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Decision trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./example_opm2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title"><span class="red">The prototype Optimal Predictor Machine makes decisions</span></span></span></a>
+  <a href="./neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./limitations_ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title"><span class="darkgrey">Decisions: limitations of present-day machine-learning algorithms</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utilities_evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title"><span class="darkgrey">Evaluation practices and utilities</span></span></span></a>
   </div>
 </li>
       </ul>
@@ -499,35 +547,12 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="midgrey"><strong>Further connections with present-day machine-learning</strong></span></span></a>
+ <span class="menu-text"><span class="lightblue"><strong>Conclusion</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./limitations_ML.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title"><span class="midgrey">Decisions: limitations of present-day machine-learning algorithms</span></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./utilities_evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title"><span class="midgrey">Evaluation practices and utilities</span></span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
- <span class="menu-text"><span class="lightblue"><strong>Conclusion</strong></span></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./whither.html" class="sidebar-item-text sidebar-link">
@@ -564,14 +589,14 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-freq-not-known" id="toc-sec-freq-not-known" class="nav-link active" data-scroll-target="#sec-freq-not-known"><span class="header-section-number">30.1</span> Inference when population frequencies aren’t known</a></li>
-  <li><a href="#sec-learning-general" id="toc-sec-learning-general" class="nav-link" data-scroll-target="#sec-learning-general"><span class="header-section-number">30.2</span> Learning from observed units</a></li>
-  <li><a href="#sec-learn-freqs" id="toc-sec-learn-freqs" class="nav-link" data-scroll-target="#sec-learn-freqs"><span class="header-section-number">30.3</span> How learning works: learning about frequencies</a>
+  <li><a href="#sec-freq-not-known" id="toc-sec-freq-not-known" class="nav-link active" data-scroll-target="#sec-freq-not-known"><span class="header-section-number">27.1</span> Inference when population frequencies aren’t known</a></li>
+  <li><a href="#sec-learning-general" id="toc-sec-learning-general" class="nav-link" data-scroll-target="#sec-learning-general"><span class="header-section-number">27.2</span> Learning from observed units</a></li>
+  <li><a href="#sec-learn-freqs" id="toc-sec-learn-freqs" class="nav-link" data-scroll-target="#sec-learn-freqs"><span class="header-section-number">27.3</span> How learning works: learning about frequencies</a>
   <ul class="collapse">
   <li><a href="#an-intuitive-interpretation-of-population-inference" id="toc-an-intuitive-interpretation-of-population-inference" class="nav-link" data-scroll-target="#an-intuitive-interpretation-of-population-inference">An intuitive interpretation of population inference</a></li>
   <li><a href="#other-uses-of-the-belief-distribution-about-frequencies" id="toc-other-uses-of-the-belief-distribution-about-frequencies" class="nav-link" data-scroll-target="#other-uses-of-the-belief-distribution-about-frequencies">Other uses of the belief distribution about frequencies</a></li>
   </ul></li>
-  <li><a href="#sec-prob-for-freqs" id="toc-sec-prob-for-freqs" class="nav-link" data-scroll-target="#sec-prob-for-freqs"><span class="header-section-number">30.4</span> How to assign the probabilities for the frequencies?</a></li>
+  <li><a href="#sec-prob-for-freqs" id="toc-sec-prob-for-freqs" class="nav-link" data-scroll-target="#sec-prob-for-freqs"><span class="header-section-number">27.4</span> How to assign the probabilities for the frequencies?</a></li>
   </ul>
 </nav>
     </div>
@@ -580,7 +605,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-inference-exch" class="quarto-section-identifier"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"><span class="green">Inference about frequencies</span></span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="sec-inference-exch" class="quarto-section-identifier"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><span class="green">Inference about frequencies</span></span></span></h1>
 </div>
 
 
@@ -591,7 +616,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-09-01</p>
+      <p class="date">2025-11-01</p>
     </div>
   </div>
   
@@ -604,21 +629,21 @@ window.Quarto = {
 
 
 <div class="hidden">
-<p><span class="math inline">\(\DeclarePairedDelimiter{\set}{\{}{\}}\)</span> </p>
+<p><span class="math inline">\(\DeclarePairedDelimiter{\set}{\{}{\}}\)</span> <span style="display:inline-block;"><span class="math inline">\(\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}\)</span></span> </p>
 </div>
 <div class="hidden">
 
 </div>
-<section id="sec-freq-not-known" class="level2 page-columns page-full" data-number="30.1">
-<h2 data-number="30.1" class="anchored" data-anchor-id="sec-freq-not-known"><span class="header-section-number">30.1</span> Inference when population frequencies aren’t known</h2>
-<p>In <a href="inference_from_freqs.html" class="quarto-xref">chapter&nbsp;&nbsp;<span>29</span></a> we considered an agent that has exchangeable beliefs and that knows the full-population frequencies. The degrees of belief of such an agent have a very simple form: products of frequencies. But for such an agent the observations of units <em>doesn’t give any useful information</em> for drawing inferences about new units: such observations provide frequencies which the agent already knows.</p>
+<section id="sec-freq-not-known" class="level2 page-columns page-full" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="sec-freq-not-known"><span class="header-section-number">27.1</span> Inference when population frequencies aren’t known</h2>
+<p>In <a href="inference_from_freqs.html" class="quarto-xref">chapter&nbsp;&nbsp;<span>26</span></a> we considered an agent that has exchangeable beliefs and that knows the full-population frequencies. The degrees of belief of such an agent have a very simple form: products of frequencies. But for such an agent the observations of units <em>doesn’t give any useful information</em> for drawing inferences about new units: such observations provide frequencies which the agent already knows.</p>
 <p>Situations where we have complete frequency knowledge can be common in engineering problems, where the physical laws underlying the phenomena involved are known and computable. They are far less common in data-science and machine-learning applications: here we must consider agents that do not know the full-population frequencies.</p>
-<p>How does such an agent calculate probabilities about units? The answer is actually a simple application of the “extension of the conversation” (<a href="derived_rules.html#sec-extension-conversation" class="quarto-xref">§&nbsp;<span>9.3</span></a>, which boil down to applications of the <code>and</code> and <code>or</code> rules). A probability given that the frequency distribution is not known is equal to the average of the probabilities given each possible frequency distribution, weighted by the probabilities of the frequency distributions:</p>
+<p>How does such an agent calculate probabilities about units? The answer is actually a simple application of the “extension of the conversation” (<a href="derived_rules.html#sec-extension-conversation" class="quarto-xref">§&nbsp;<span>9.5</span></a>, which boil down to applications of the <code>and</code> and <code>or</code> rules). A probability given that the frequency distribution is not known is equal to the average of the probabilities given each possible frequency distribution, weighted by the probabilities of the frequency distributions:</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp;\mathrm{P}(
-{\color[RGB]{68,119,170}Z}_{u'}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z'} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
-{\color[RGB]{68,119,170}Z}_{u''}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z''} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{u'}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z'} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{u''}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z''} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
 \dotsb
 \nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}
 )
@@ -626,8 +651,8 @@ window.Quarto = {
 &amp;\qquad{}=
 \sum_{\boldsymbol{f}}
 \mathrm{P}(
-{\color[RGB]{68,119,170}Z}_{u'}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z'} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
-{\color[RGB]{68,119,170}Z}_{u''}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z''} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{u'}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z'} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{u''}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z''} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
 \dotsb
 \nonscript\:\vert\nonscript\:\mathopen{} F\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\boldsymbol{f}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{I}
 )
@@ -635,7 +660,7 @@ window.Quarto = {
 \mathrm{P}(F\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\boldsymbol{f}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I})
 \end{aligned}
 \]</span></p>
-<p>But we saw in <a href="inference_from_freqs.html#sec-moreunit-freq-known" class="quarto-xref">§&nbsp;<span>29.4</span></a> that the probability for a sequence of values given a known frequency is just the product of the value’s frequencies. We thus have our long-sought formula:</p>
+<p>But we saw in <a href="inference_from_freqs.html#sec-moreunit-freq-known" class="quarto-xref">§&nbsp;<span>26.4</span></a> that the probability for a sequence of values given a known frequency is just the product of the value’s frequencies. We thus have our long-sought formula:</p>
 <div class="column-page-inset-right">
 <div class="callout callout-style-default callout-note no-icon callout-titled" style="font-size:120%">
 <div class="callout-header d-flex align-content-center">
@@ -656,27 +681,27 @@ de&nbsp;Finetti’s representation theorem
 <p>then</p>
 <p><span class="math display">\[
 \mathrm{P}(
-{\color[RGB]{68,119,170}Z}_{u'}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z'} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
-{\color[RGB]{68,119,170}Z}_{u''}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z''} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{u'}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z'} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{u''}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z''} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
 \dotsb
 \nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}
 )
 \approx
 \sum_{\boldsymbol{f}}
-f({\color[RGB]{68,119,170}Z}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z'}\color[RGB]{0,0,0}) \cdot
-f({\color[RGB]{68,119,170}Z}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z''}\color[RGB]{0,0,0}) \cdot
+f(Z\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z'}) \cdot
+f(Z\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z''}) \cdot
 \,\dotsb\
 \cdot
 \mathrm{P}(F\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\boldsymbol{f}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I})
 \]</span></p>
-<p>for any (different) units <span style="display:inline-block;"><span class="math inline">\(u', u'', \dotsc\)</span></span> and any (even equal) values <span style="display:inline-block;"><span class="math inline">\(\color[RGB]{68,119,170}z', z'', \dotsc\)</span>.</span></p>
+<p>for any (different) units <span style="display:inline-block;"><span class="math inline">\(u', u'', \dotsc\)</span></span> and any (even equal) values <span style="display:inline-block;"><span class="math inline">\(z', z'', \dotsc\)</span>.</span></p>
 <p>In the sum above, <span style="display:inline-block;"><span class="math inline">\(\boldsymbol{f}\)</span></span> runs over all possible frequency distributions for the full population.</p>
 <p><span class="small">Properly speaking the sum is an integral, because <span class="math inline">\(F\)</span> is a continuous quantity. We should write <span class="math inline">\(\mathrm{P}(
-{\color[RGB]{68,119,170}Z}_{u'}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z'} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{u'}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z'} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
 \dotsb
 \nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}
 ) = \int
-f({\color[RGB]{68,119,170}Z}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z'})  \cdot
+f(Z\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z'})  \cdot
 \,\dotsb\
 \cdot
 \mathrm{p}(\boldsymbol{f}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I})\,\mathrm{d}\boldsymbol{f}\)</span></span></p>
@@ -702,7 +727,7 @@ f({\color[RGB]{68,119,170}Z}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\sm
 </div>
 </div></div><p><br>
 </p>
-<p>Let’s see how this formula works in the simple Mars-prospecting example (with 3&nbsp;million rocks or more) from <a href="inference_from_freqs.html#sec-moreunit-freq-known" class="quarto-xref">§&nbsp;<span>29.4</span></a>. Suppose that the agent:</p>
+<p>Let’s see how this formula works in the simple Mars-prospecting example (with 3&nbsp;million rocks or more) from <a href="inference_from_freqs.html#sec-moreunit-freq-known" class="quarto-xref">§&nbsp;<span>26.4</span></a>. Suppose that the agent:</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><img src="mars_crater2.jpg" class="img-fluid" style="width:50.0%"></p>
@@ -768,20 +793,20 @@ f''(R\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0
 </p>
 <p>This formula generalizes to any population, any variates, and any number of hypotheses about the frequencies.</p>
 <p>Mathematical and, even more, computational complications arise when we consider <em>all possible</em> frequency distributions, since there is a practically infinite number of them; they form a continuum in fact. But do not let these practical difficulties affect the intuitive picture behind them, which is simple to grasp once you’ve considered some simple examples.</p>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div id="cau-unique1" class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise
+Exercise&nbsp;27.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Consider a state of knowledge <span style="display:inline-block;"><span class="math inline">\(\mathsfit{K}'\)</span></span> according to which:</p>
 <div>
 <ul>
-<li>The rock collection may have a proportion <span class="math inline">\(0/10\)</span> of <span class="math inline">\({\color[RGB]{102,204,238}{\small\verb;Y;}}\)</span>-rocks (and <span class="math inline">\(9/10\)</span> of <span class="math inline">\({\color[RGB]{204,187,68}{\small\verb;N;}}\)</span>-rocks); call this frequency distribution <span class="math inline">\(\boldsymbol{f}_0\)</span></li>
+<li>The rock collection may have a proportion <span class="math inline">\(0/10\)</span> of <span class="math inline">\({\color[RGB]{102,204,238}{\small\verb;Y;}}\)</span>-rocks (and <span class="math inline">\(10/10\)</span> of <span class="math inline">\({\color[RGB]{204,187,68}{\small\verb;N;}}\)</span>-rocks); call this frequency distribution <span class="math inline">\(\boldsymbol{f}_0\)</span></li>
 <li>The rock collection may have a proportion <span class="math inline">\(1/10\)</span> of <span class="math inline">\({\color[RGB]{102,204,238}{\small\verb;Y;}}\)</span>-rocks; call this <span class="math inline">\(\boldsymbol{f}_1\)</span></li>
 <li>and so on… up to</li>
 <li>a proportion <span class="math inline">\(10/10\)</span> of <span class="math inline">\({\color[RGB]{102,204,238}{\small\verb;Y;}}\)</span>-rocks; call this <span class="math inline">\(\boldsymbol{f}_{10}\)</span></li>
@@ -808,9 +833,9 @@ f''(R\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0
 </div>
 </div>
 </section>
-<section id="sec-learning-general" class="level2" data-number="30.2">
-<h2 data-number="30.2" class="anchored" data-anchor-id="sec-learning-general"><span class="header-section-number">30.2</span> Learning from observed units</h2>
-<p>Staying with the same Mars-prospecting scenario, let’s now ask what’s the agent’s degree of belief that rock&nbsp;#1 contains haematite, <em>given that the agent has found that rock&nbsp;#2 doesn’t contain haematite</em>. In the case of an agent that knows the full-population frequencies we saw <a href="inference_from_freqs.html#sec-no-learn-freqs" class="quarto-xref">§&nbsp;<span>29.5</span></a> that this degree of belief is actually unaffected by other observations. What happens when the population frequencies are not known?</p>
+<section id="sec-learning-general" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="sec-learning-general"><span class="header-section-number">27.2</span> Learning from observed units</h2>
+<p>Staying with the same Mars-prospecting scenario, let’s now ask what’s the agent’s degree of belief that rock&nbsp;#1 contains haematite, <em>given that the agent has found that rock&nbsp;#2 doesn’t contain haematite</em>. In the case of an agent that knows the full-population frequencies we saw <a href="inference_from_freqs.html#sec-no-learn-freqs" class="quarto-xref">§&nbsp;<span>26.5</span></a> that this degree of belief is actually unaffected by other observations. What happens when the population frequencies are not known?</p>
 <p>The calculation is straightforward:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -858,13 +883,13 @@ f(R\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu
 \mathrm{P}(R_{1} \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{102,204,238}{\small\verb;Y;}}\nonscript\:\vert\nonscript\:\mathopen{} R_{2} \mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{204,187,68}{\small\verb;N;}}\mathbin{\mkern-0.5mu,\mkern-0.5mu}\mathsfit{K}) \approx 61.1\%
 \]</span></p>
 <p>In particular, the observation of one <span style="display:inline-block;"><span class="math inline">\({\color[RGB]{204,187,68}{\small\verb;N;}}\)</span>-rock</span> has somewhat decreased the probability of observing a new <span style="display:inline-block;"><span class="math inline">\({\color[RGB]{102,204,238}{\small\verb;Y;}}\)</span>-rock.</span></p>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div id="cau-unique2" class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise
+Exercise&nbsp;27.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -877,10 +902,10 @@ f(R\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu
 </div>
 </div>
 </section>
-<section id="sec-learn-freqs" class="level2 page-columns page-full" data-number="30.3">
-<h2 data-number="30.3" class="anchored" data-anchor-id="sec-learn-freqs"><span class="header-section-number">30.3</span> How learning works: learning about frequencies</h2>
+<section id="sec-learn-freqs" class="level2 page-columns page-full" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="sec-learn-freqs"><span class="header-section-number">27.3</span> How learning works: learning about frequencies</h2>
 <p>An agent having full-population frequency information does not learn<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> from observation of units, whereas an agent not having such information does learn from observation of units. This fact shows how learning from observed to unobserved units actually works. Crudely speaking, observations do not directly affect the beliefs about unobserved units, but instead affect the <strong>beliefs about the population frequencies</strong>. And these in turn affect the beliefs about unobserved units. Graphically this could be represented as follows:</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;remember the warning of <a href="inference_from_freqs.html#sec-no-learn-freqs" class="quarto-xref">§&nbsp;<span>29.5</span></a> about “learning”</p></div></div><p><img src="learning_flow.png" class="img-fluid"> </p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;remember the warning of <a href="inference_from_freqs.html#sec-no-learn-freqs" class="quarto-xref">§&nbsp;<span>26.5</span></a> about “learning”</p></div></div><p><img src="learning_flow.png" class="img-fluid"> </p>
 <p>as opposed to this:</p>
 <div class="columns">
 <div class="column" style="width:15%;">
@@ -920,7 +945,7 @@ f(R\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu
 </div>
 </div></div><p><br>
 </p>
-<p>The informational relation between observed units, frequencies, and unobserved units becomes clear if we check how the agent’s beliefs about the frequency hypotheses change as observations are made. In the Mars-prospecting example of <a href="#sec-freq-not-known" class="quarto-xref">§&nbsp;<span>30.1</span></a>, the agent has initial probabilities</p>
+<p>The informational relation between observed units, frequencies, and unobserved units becomes clear if we check how the agent’s beliefs about the frequency hypotheses change as observations are made. In the Mars-prospecting example of <a href="#sec-freq-not-known" class="quarto-xref">§&nbsp;<span>27.1</span></a>, the agent has initial probabilities</p>
 <p><span class="math display">\[
 \mathrm{P}(F\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\boldsymbol{f}'\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{K}) = 75\%
 \qquad
@@ -1020,7 +1045,7 @@ f''(R\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0
 \end{aligned}
 \]</span></p>
 </div>
-<p>The result is exactly as in <a href="#sec-learning-general" class="quarto-xref">§&nbsp;<span>30.2</span></a> – as it should be: remember from <a href="probability_inference.html" class="quarto-xref">chapter&nbsp;&nbsp;<span>8</span></a> that the four rules of inference are built so as to mathematically guarantee this kind of logical self-consistency.</p>
+<p>The result is exactly as in <a href="#sec-learning-general" class="quarto-xref">§&nbsp;<span>27.2</span></a> – as it should be: remember from <a href="probability_inference.html" class="quarto-xref">chapter&nbsp;&nbsp;<span>8</span></a> that the four rules of inference are built so as to mathematically guarantee this kind of logical self-consistency.</p>
 <section id="an-intuitive-interpretation-of-population-inference" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="an-intuitive-interpretation-of-population-inference">An intuitive interpretation of population inference</h3>
 <p>The general expression for the updated belief about frequencies has a very intuitive interpretation. Again using Bayes’s theorem, but omitting the proportionality constant,</p>
@@ -1096,10 +1121,11 @@ f({\color[RGB]{238,102,119}Z_{N+1}\mathclose{}\mathord{\nonscript\mkern 0mu\text
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p><span class="lightblue"><strong>Skim through</strong></span>:</p>
 <ul>
 <li><p>Ch.&nbsp;4 of Jaynes: <a href="references.html"><em>Probability Theory</em></a></p></li>
 <li><p>§§8.1–8.6 of O’Hagan: <a href="references.html"><em>Probability</em></a></p></li>
-<li><p>Skim through Heath &amp; Sudderth 1976: <a href="references.html"><em>De&nbsp;finetti’s theorem on exchangeable variables</em></a></p></li>
+<li><p>Heath &amp; Sudderth 1976: <a href="references.html"><em>De&nbsp;finetti’s theorem on exchangeable variables</em></a></p></li>
 </ul>
 </div>
 </div>
@@ -1107,20 +1133,20 @@ f({\color[RGB]{238,102,119}Z_{N+1}\mathclose{}\mathord{\nonscript\mkern 0mu\text
 </p>
 </section>
 </section>
-<section id="sec-prob-for-freqs" class="level2 page-columns page-full" data-number="30.4">
-<h2 data-number="30.4" class="anchored" data-anchor-id="sec-prob-for-freqs"><span class="header-section-number">30.4</span> How to assign the probabilities for the frequencies?</h2>
+<section id="sec-prob-for-freqs" class="level2 page-columns page-full" data-number="27.4">
+<h2 data-number="27.4" class="anchored" data-anchor-id="sec-prob-for-freqs"><span class="header-section-number">27.4</span> How to assign the probabilities for the frequencies?</h2>
 <p>The general formula we found for the joint probability:</p>
 <p><span class="math display">\[
 \mathrm{P}(
-{\color[RGB]{68,119,170}Z}_{u'}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z'} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
-{\color[RGB]{68,119,170}Z}_{u''}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z''} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{u'}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z'} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
+Z_{u''}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z''} \mathbin{\mkern-0.5mu,\mkern-0.5mu}
 \dotsb
 \nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}
 )
 \approx
 \sum_{\boldsymbol{f}}
-f({\color[RGB]{68,119,170}Z}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z'}\color[RGB]{0,0,0}) \cdot
-f({\color[RGB]{68,119,170}Z}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{\color[RGB]{68,119,170}z''}\color[RGB]{0,0,0}) \cdot
+f(Z\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z'}) \cdot
+f(Z\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}{ z''}) \cdot
 \,\dotsb\
 \cdot
 \mathrm{P}(F\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\boldsymbol{f}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I})
@@ -1148,13 +1174,13 @@ f({\color[RGB]{68,119,170}Z}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\sm
 &amp;\mathrm{P}(F\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\textsf{\small`50\% heads 50\% tails'} \nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{I}_{\text{m}}) = 0
 \end{aligned}
 \]</span></p>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div id="cau-unique3" class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise
+Exercise&nbsp;27.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1186,7 +1212,7 @@ f({\color[RGB]{68,119,170}Z}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\sm
 </div>
 </div></div><p><br>
 </p>
-<p>In <a href="dirichlet-mixture.html" class="quarto-xref">chapter&nbsp;&nbsp;<span>32</span></a> we shall discuss and implement a mathematically concrete belief distribution <span style="display:inline-block;"><span class="math inline">\(\mathrm{P}(F\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\boldsymbol{f}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{D})\)</span></span> appropriate to task involving nominal variates.</p>
+<p>In <a href="dirichlet-mixture.html" class="quarto-xref">chapter&nbsp;&nbsp;<span>28</span></a> we shall discuss and implement a mathematically concrete belief distribution <span style="display:inline-block;"><span class="math inline">\(\mathrm{P}(F\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\small=}\nonscript\mkern 0mu}\mathopen{}\boldsymbol{f}\nonscript\:\vert\nonscript\:\mathopen{} \mathsfit{D})\)</span></span> appropriate to task involving nominal variates.</p>
 
 
 </section>
@@ -1600,12 +1626,12 @@ f({\color[RGB]{68,119,170}Z}\mathclose{}\mathord{\nonscript\mkern 0mu\textrm{\sm
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./inference_from_freqs.html" class="pagination-link" aria-label="[Inferences from frequencies]{.green}">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><span class="green">Inferences from frequencies</span></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"><span class="green">Inferences from frequencies</span></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary_formulae.html" class="pagination-link" aria-label="[Final inference formulae]{.green}">
-        <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"><span class="green">Final inference formulae</span></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./dirichlet-mixture.html" class="pagination-link" aria-label="[Example of belief over frequencies: the Dirichlet-mixture distribution]{.green}">
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><span class="green">Example of belief over frequencies: the Dirichlet-mixture distribution</span></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

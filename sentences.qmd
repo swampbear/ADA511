@@ -37,7 +37,7 @@ We shall therefore use [**sentences**]{.blue}, also called [**propositions**]{.b
 
 :::
 
-## Identifying and working with sentences
+## Identifying and working with sentences {#sec-identify-sentences}
 
 But what is a sentence, more exactly? The everyday meaning of this word will work for us, even though there are more precise definitions -- and still a lot of research in logic an artificial intelligence on how to define and use sentences. We shall adopt this useful definition:
 
@@ -120,7 +120,8 @@ Later on we shall see how to work with more complex inferences of this kind. In 
 This kind of analysis is also important in information-theoretic situations: the [**information content**]{.blue} provided by an inference, when measured in *Shannons*, is related to the minimal amount of yes/no questions that the inference answers.
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 Rewrite each inference scenario of [§@sec-inference-scenarios] in a formal way, as one or more inferences
 
 $$
@@ -181,7 +182,8 @@ The quantity "10 m/s" is the same in all three sentences, but their meanings a
 ::::
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 How would you denote the three sentences above, to make their differences clear?
 :::
 

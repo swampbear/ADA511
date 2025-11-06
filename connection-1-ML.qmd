@@ -1,6 +1,10 @@
-# [Connection with machine learning and AI]{.midgrey}
+# [Connection with machine learning and AI]{.midgrey} {#sec-connection-1-ML}
 {{< include macros.qmd >}}
 
+```{r}
+#| echo: false
+knitr::opts_knit$set(root.dir = "code/")
+```
 
 ## Inferences with machine-learning algorithms
 
@@ -27,7 +31,7 @@ For the moment we treat both as "black boxes", that is, we don't study yet how t
 Their operation is implemented in [this R script](code/mlc_vs_opm.R) that we now load:
 
 ```{r}
-source('code/mlc_vs_opm.R')
+source('mlc_vs_opm.R')
 ```
 
 This script simply defines the function `hitsvsgain()`:
@@ -76,7 +80,8 @@ The [optimal predictor machine]{.blue}, on the other hand, *makes fewer successf
 
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 How is this possible? Try to understand what's happening; feel free to research this by modifying the `hitsvsgain()` function, so that it prints additional outputs.
 :::
 
@@ -116,7 +121,8 @@ Again we see that the [machine-learning classifier]{.yellow} makes more successf
 You may sensibly object that this result could depend on the peculiar utilities or probabilities chosen for this example. The next exercise helps answering your objection.
 
 :::{.callout-caution}
-## {{< fa user-edit >}} Exercise
+
+
 - Is there any case in which the optimal predictor machine yields a strictly lower utility than the machine-learning classifier?
     + Try using different utilities, for instance using `±5` instead of `±2`, or whatever other values you please.
     + Try using different probabilities as well.
