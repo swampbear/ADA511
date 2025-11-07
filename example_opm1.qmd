@@ -61,7 +61,7 @@ guessmetadata(data = 'train-income_data_example.csv',
 
 Inspect the resulting file `preliminary.csv` and check whether you can alter it to add additional background information.
 
-As an example, note that domain of the $\mathit{native\_country}$ variate does not include $\cat{Norway}$ or $\cat{Sweden}$. Yet it's extremely likely that there were some native Norwegian or Swedish people in the USA in 1994; maybe too few to have been sampled into the training data. Let's add these two values to the list of domain values, and increase the domain size of $\mathit{native\_country}$ from 40 to 42. The resulting, updated metadata file has already been saved as [`meta_income_data_example.csv`](https://github.com/pglpm/ADA511/blob/master/code/meta_income_data_example.csv).
+As an example, note that domain of the $\mathit{native\_country}$ variate does not include $\cat{Norway}$ or $\cat{Sweden}$. Yet it's extremely likely that there were some native Norwegian or Swedish people in the USA in 1994; maybe too few to have been sampled into the training data. Let's add these two values to the list of domain values (*don't forget to also add the names `V41` and `V42` in the new columns*), and increase the domain size of $\mathit{native\_country}$ from 40 to 42. The resulting, updated metadata file has already been saved as [`meta_income_data_example.csv`](https://github.com/pglpm/ADA511/blob/master/code/meta_income_data_example.csv).
 
 ### Agent's parameters $\amin, \amax$
 
@@ -79,22 +79,27 @@ The 11 306 training data have been prepared by including only nominal variates
 
 For the sake of this example we shall prepare two agents that have the same background information, represented by the same $\amin, \amax$ parameters, but that have learned from different amounts of training data:
 
-- `opm10`, trained with 10 training datapoints
+- `opm10`, trained with 10 training datapoints;
 
-- `opmAll`, trained with all 11 306 training datapoints
+- `opmAll`, trained with all 11 306 training datapoints.
 
-Prepare and train each with the `buildagent()` function:
+
+Prepare and train the first agent with the `buildagent()` function:
 
 ```{r}
 ## temporarily load all training data
 traindata <- tread.csv('train-income_data_example.csv')
 
-## feed first 10 datapoints to an agent
+## feed first 10 datapoints to the agent
 opm10 <- buildagent(
     metadata = 'meta_income_data_example.csv',
     data = traindata[1:10, ]
 )
+```
 
+And then the second agent (we also remove the training data to save memory):
+
+```{r}
 ## delete training data for memory efficiency
 rm(traindata)
 
@@ -118,7 +123,7 @@ this shows the information contained in the agent as a list of several objects, 
 - the array `counts`, containing the counts $\green\# z$;
 - the list `variates`, containing the variates' names and domains;
 - the vector `alphas`, containing the values of $2^k$;
-- the vector `auxalphas`, containing the (logarithm of) the multiplicative factors ([§@sec-code-computations]);
+- the vector `auxalphas`, containing the (logarithm of) the multiplicative factors $\aux(k)$ ([§@sec-code-computations]);
 - the vector `palphas`, containing the updated probabilities about the required amount of training data.
 
 The agent has internally guessed how many training data should be necessary to affect its prior beliefs. We can peek at its guess by plotting the `alphas` parameters against the `palphas` probabilities:
@@ -153,11 +158,11 @@ We ask the `opm10` agent to forecast the $\mathit{income}$ of the next unit, usi
 infer(agent = opm10, predictand = 'income')
 ```
 
-This agent gives a slightly larger probability to the $\cat{<=50K}$ case. Using the function `plotFsamples1D()` we can also inspect the `opm10`-agent's belief about the frequency distribution of $\mathit{income}$ for the full population. This belief is represented by a generalized scatter plot of 200 representative frequency distributions, represented as the [light-blue lines]{.lightblue}:
+This agent gives a slightly larger probability to the $\cat{<=50K}$ case. Using the function `plotFbelief()` we can also inspect the `opm10`-agent's belief about the frequency distribution of $\mathit{income}$ for the full population. This belief is represented by a generalized scatter plot of 1000 representative frequency distributions, represented as the [light-blue lines]{.lightblue}:
 
 ```{r}
-plotFsamples1D(agent = opm10,
-    n = 200, ## number of example frequency distributions
+plotFbelief(agent = opm10,
+    n = 1000, ## number of example frequency distributions
     predictand = 'income',
     ylim = c(0,1), ## y-axis range
     main = 'opm10') ## plot title
@@ -171,7 +176,7 @@ This plot expresses the `opm10`-agent's belief that future training data might l
 Let's visualize the beliefs of the `opmAll`-agent, trained with the full training dataset:
 
 ```{r}
-plotFsamples1D(agent = opmAll, n = 200,
+plotFbelief(agent = opmAll, n = 1000,
     predictand = 'income',
     ylim = c(0,1), main = 'opmAll')
 ```
@@ -184,7 +189,7 @@ We can perform a similar exploration for any other variate. Let's take the $\mat
 
 
 ```{r}
-plotFsamples1D(agent = opm10, n = 200,
+plotFbelief(agent = opm10, n = 1000,
     predictand = 'race',
     ylim = c(0,1), main = 'opm10',
     cex.axis = 0.75) ## smaller axis-font size
@@ -196,7 +201,7 @@ This is corroborated by the fully-trained agent:
 
 
 ```{r}
-plotFsamples1D(agent = opmAll, n = 200,
+plotFbelief(agent = opmAll, n = 1000,
     predictand = 'race',
     ylim = c(0,1), main = 'opmAll', cex.axis = 0.75)
 ```
@@ -240,7 +245,7 @@ We ask the `opm10` agent to forecast the $\mathit{income}$ of a new unit, given 
 The `opm10`-agent's belief about the unit -- as well as about the *full subpopulation* ([§@sec-subpopulations]) of units having those predictors -- is shown in the following plot:
 
 ```{r}
-plotFsamples1D(agent = opm10, n = 200,
+plotFbelief(agent = opm10, n = 1000,
     predictand = 'income',
     predictor = list(occupation = 'Exec-managerial', sex = 'Male'),
     ylim = c(0,1), main = 'opm10')
@@ -251,7 +256,7 @@ Note how the `opm10`-agent still slightly higher probability to $\mathit{income}
 The `opmAll`-agent's beliefs are shown below:
 
 ```{r}
-plotFsamples1D(agent = opmAll, n = 200,
+plotFbelief(agent = opmAll, n = 1000,
     predictand = 'income',
     predictor = list(occupation = 'Exec-managerial', sex = 'Male'),
     ylim = c(0,1), main = 'opmAll')
@@ -275,7 +280,7 @@ It returns a 14 × 2 table of joint probabilities. The most probable combina
 
 ### The `rF()` function
 
-This function generates **full-population** frequency distributions (even for subpopulations) that are probable according to the data. It is used internally by `plotFsamples1D()`, which plots the generated frequency distributions as [light-blue lines]{.lightblue}.
+This function generates **full-population** frequency distributions (even for subpopulations) that are probable according to the data. It is used internally by `plotFbelief()`, which plots the generated frequency distributions as [light-blue lines]{.lightblue}.
 
 Let's see, as an example, three samples of how the full-population frequency distribution for $\mathit{sex} \and \mathit{income}$ (jointly) could be:
 
